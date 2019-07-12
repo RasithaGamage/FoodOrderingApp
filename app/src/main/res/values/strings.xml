@@ -1,3 +1,69 @@
 <resources>
     <string name="app_name">Ansell Cafeteria</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string-array name="place">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+    <!-- Names -->
+    <string-array name="Member_names">
+        <item>Lasitha Prabasha</item>
+        <item>Heminda Jayawardana</item>
+        <item>Shanuka Fernando</item>
+        <item>Sakeeb Mohomed</item>
+        <item>Ishika Millaniyage</item>
+        <item>Shashinika Maduwanthi</item>
+        <item>Kalpa Wijesooriya</item>
+        <item>Gimhana Kaldera</item>
+        <item>Maleesha Ranawaka</item>
+    </string-array>
+
+    <!-- Pictures -->
+    <array name="profile_pics">
+        <item>@drawable/logo</item>
+        <item>@drawable/logo</item>
+        <item>@drawable/logo</item>
+        <item>@drawable/logo</item>
+        <item>@drawable/logo</item>
+        <item>@drawable/logo</item>
+        <item>@drawable/logo</item>
+        <item>@drawable/logo</item>
+        <item>@drawable/logo</item>
+    </array>
+
+    <!-- Status -->
+    <string-array name="statues">
+        <item>Colombo</item>
+        <item>Colombo</item>
+        <item>Gampaha</item>
+        <item>Galle</item>
+        <item>Colombo</item>
+        <item>Colombo</item>
+        <item>Gampaha</item>
+        <item>Galle</item>
+        <item>Colombo</item>
+    </string-array>
+
+    <!-- contact type -->
+    <string-array name="contactType">
+        <item>17 Points</item>
+        <item>15 Points</item>
+        <item>14 Points</item>
+        <item>13 Points</item>
+        <item>12 Points</item>
+        <item>11 Points</item>
+        <item>9 Points</item>
+        <item>9 Points</item>
+        <item>8 Points</item>
+    </string-array>
 </resources>

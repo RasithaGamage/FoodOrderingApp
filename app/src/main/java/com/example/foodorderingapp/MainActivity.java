@@ -25,6 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     Button btnSignIn;
+    Button btnLogIn;
 
 
 
@@ -37,11 +38,21 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
+        btnLogIn = (Button) findViewById(R.id.btnLogin);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent newActivityLoad = new Intent(MainActivity.this,CreatingAccount.class);
+                startActivity(newActivityLoad);
+
+            }
+        });
+
+        btnLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newActivityLoad = new Intent(MainActivity.this,Home.class);
                 startActivity(newActivityLoad);
 
             }
