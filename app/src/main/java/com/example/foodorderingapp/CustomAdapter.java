@@ -41,12 +41,12 @@ public class CustomAdapter extends BaseAdapter{
             return rowItems.indexOf(getItem(position));
     }
 
+
         private class ViewHolder {
             TextView place;
             ImageView profile_pic;
             TextView member_name;
             TextView status;
-            TextView contactType;
         }
 
         @Override
@@ -68,15 +68,13 @@ public class CustomAdapter extends BaseAdapter{
 
                 holder.status = (TextView) convertView.findViewById(R.id.status);
 
-                holder.contactType = (TextView) convertView.findViewById(R.id.contact_type);
-
                 RowItem row_pos = rowItems.get(position);
 
                 holder.place.setText(row_pos.getPlace());
                 holder.profile_pic.setImageResource(row_pos.getProfile_pic_id());
                 holder.member_name.setText(row_pos.getMember_name());
                 holder.status.setText(row_pos.getStatus());
-                holder.contactType.setText(row_pos.getContactType());
+
 
                 convertView.setTag(holder);
             } else {
@@ -85,4 +83,7 @@ public class CustomAdapter extends BaseAdapter{
 
             return convertView;
         }
+
+
+
 }

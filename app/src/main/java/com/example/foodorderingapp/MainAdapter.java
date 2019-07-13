@@ -23,13 +23,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>  {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row,parent,false);
         ViewHolder vh = new ViewHolder(v);
+        //vh.setIsRecyclable(false); //recycler property disabled
+        vh.setIsRecyclable(false);
         return  vh;
 
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        holder.setIsRecyclable(false);
     }
 
     @Override
@@ -45,4 +47,5 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>  {
             myTitle = (ImageView) itemView.findViewById(R.id.title);
         }
     }
+
 }

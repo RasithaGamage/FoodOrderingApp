@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:background="#FFC107"
+            android:background="#009688"
             android:orientation="horizontal"
             android:id="@+id/ccc">
 
@@ -26,17 +26,21 @@
                 android:textColor="#ffff"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginBottom="9dp"
                 android:id="@+id/signinText"
                 android:layout_weight="1"
                 />
 
-            <ImageView
+            <TextView
                 android:layout_width="195dp"
                 android:layout_height="47dp"
                 android:layout_marginTop="3dp"
                 android:layout_toEndOf="@+id/signinText"
+                android:text="@string/app_name"
                 android:layout_weight="0"
-                android:src="@drawable/logo"
+                android:textSize="20sp"
+                android:textColor="#ffff"
+
 
                 />
         </LinearLayout>
@@ -157,13 +161,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="NIC"
-                        android:id="@+id/textnic"/>
+                        android:text="Employee ID"
+                        android:id="@+id/textempid"/>
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_below="@+id/textnic"
+                        android:layout_below="@+id/textempid"
                         android:id="@+id/editTextNic"/>
 
                 </RelativeLayout>

@@ -23,9 +23,9 @@
                 android:layout_margin="30dp">
 
                 <android.support.v7.widget.AppCompatImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/snacksbutton"
                     android:id="@+id/snackButton"
                     />
 
@@ -40,8 +40,9 @@
                 <android.support.v7.widget.AppCompatImageButton
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/logo"
-                    android:id="@+id/mealButton"/>
+                    android:src="@drawable/mealbutton"
+                    android:id="@+id/mealButton"
+                    />
 
             </RelativeLayout>
 

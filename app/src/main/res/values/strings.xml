@@ -17,41 +17,41 @@
     </string-array>
     <!-- Names -->
     <string-array name="Member_names">
-        <item>Lasitha Prabasha</item>
-        <item>Heminda Jayawardana</item>
-        <item>Shanuka Fernando</item>
-        <item>Sakeeb Mohomed</item>
-        <item>Ishika Millaniyage</item>
-        <item>Shashinika Maduwanthi</item>
-        <item>Kalpa Wijesooriya</item>
-        <item>Gimhana Kaldera</item>
-        <item>Maleesha Ranawaka</item>
+        <item>CHICKEN RICE &amp; CURRY</item>
+        <item>FISH RICE &amp; CURRY</item>
+        <item>EGG RICE &amp; CURRY</item>
+        <item>VEGE RICE &amp; CURRY</item>
+        <item>EGG RICE &amp; CURRY</item>
+        <item>EGG RICE &amp; CURRY</item>
+        <item>EGG RICE &amp; CURRY</item>
+        <item>EGG RICE &amp; CURRY</item>
+        <item>EGG RICE &amp; CURRY</item>
     </string-array>
 
     <!-- Pictures -->
     <array name="profile_pics">
-        <item>@drawable/logo</item>
-        <item>@drawable/logo</item>
-        <item>@drawable/logo</item>
-        <item>@drawable/logo</item>
-        <item>@drawable/logo</item>
-        <item>@drawable/logo</item>
-        <item>@drawable/logo</item>
-        <item>@drawable/logo</item>
-        <item>@drawable/logo</item>
+        <item>@drawable/bg1</item>
+        <item>@drawable/bg2</item>
+        <item>@drawable/bg1</item>
+        <item>@drawable/bg2</item>
+        <item>@drawable/bg1</item>
+        <item>@drawable/bg2</item>
+        <item>@drawable/bg1</item>
+        <item>@drawable/bg2</item>
+        <item>@drawable/bg1</item>
     </array>
 
     <!-- Status -->
     <string-array name="statues">
-        <item>Colombo</item>
-        <item>Colombo</item>
-        <item>Gampaha</item>
-        <item>Galle</item>
-        <item>Colombo</item>
-        <item>Colombo</item>
-        <item>Gampaha</item>
-        <item>Galle</item>
-        <item>Colombo</item>
+        <item>dhal curry,soya meat,pol sambal,papadam</item>
+        <item>dhal curry,soya meat,pol sambal</item>
+        <item>soya meat</item>
+        <item>soya meat</item>
+        <item>soya meat</item>
+        <item>soya meat</item>
+        <item>soya meat</item>
+        <item>soya meat</item>
+        <item>soya meat</item>
     </string-array>
 
     <!-- contact type -->
