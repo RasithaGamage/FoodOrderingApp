@@ -94,10 +94,20 @@ public class CustomAdapter extends BaseAdapter{
                 holder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context,""+ finalHolder1.num.getText().toString(),Toast.LENGTH_SHORT).show();
-                        finalHolder1.button.setText("cancel");
-                        finalHolder1.button.getBackground().setColorFilter(finalHolder1.button.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
 
+                        String button_text = finalHolder1.button.getText().toString();
+                       // Toast.makeText(context,""+ button_text,Toast.LENGTH_SHORT).show();
+
+                        if(button_text.equals("Order")){
+                            finalHolder1.button.setText("Cancel");
+                            finalHolder1.button.getBackground().setColorFilter(finalHolder1.button.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
+                            Toast.makeText(context,"You ordered "+ finalHolder1.pro_name.getText().toString(),Toast.LENGTH_SHORT).show();
+                        }
+                        if(button_text.equals("Cancel")){
+                            finalHolder1.button.setText("Order");
+                            finalHolder1.button.getBackground().setColorFilter(finalHolder1.button.getContext().getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
+                            Toast.makeText(context,"Order canceled",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
