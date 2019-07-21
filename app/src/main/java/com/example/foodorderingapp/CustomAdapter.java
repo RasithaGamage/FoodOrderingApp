@@ -5,13 +5,22 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.ui.auth.data.model.Resource;
 
 /**
  * Created by Rasitha on 3/24/2018.
@@ -46,6 +55,7 @@ public class CustomAdapter extends BaseAdapter{
 
 
         private class ViewHolder {
+            Button button;
             TextView num;
             ImageView pic;
             TextView pro_name;
@@ -63,10 +73,33 @@ public class CustomAdapter extends BaseAdapter{
                 convertView = mInflater.inflate(R.layout.list_item, null);
                 holder = new ViewHolder();
 
+                convertView.setClickable(true);
+//               final ViewHolder finalHolder = holder;
+//                convertView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                       // Toast.makeText(context,""+ finalHolder.num.getText().toString(),Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+
+
+
                 holder.num = (TextView) convertView.findViewById(R.id.num);
                 holder.pro_name = (TextView) convertView.findViewById(R.id.pro_name);
                 holder.pic = (ImageView) convertView.findViewById(R.id.pic);
                 holder.details = (TextView) convertView.findViewById(R.id.details);
+                holder.button = convertView.findViewById(R.id.btnOrder);
+                final ViewHolder finalHolder1 = holder;
+                holder.button.setTag(finalHolder1.num.getText());
+                holder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context,""+ finalHolder1.num.getText().toString(),Toast.LENGTH_SHORT).show();
+                        finalHolder1.button.setText("cancel");
+                        finalHolder1.button.getBackground().setColorFilter(finalHolder1.button.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
+
+                    }
+                });
 
                 RowItem row_pos = rowItems.get(position);
 
@@ -74,8 +107,10 @@ public class CustomAdapter extends BaseAdapter{
                 byte[]  ds =  Base64.decode(row_pos.getPic(), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(ds, 0, ds.length);
                 holder.pic.setImageBitmap(decodedByte);
-                holder.pro_name.setText(row_pos.getMember_name());
+                holder.pro_name.setText(row_pos.getPro_name());
                 holder.details.setText(row_pos.getDetails());
+
+
 
 
                 convertView.setTag(holder);

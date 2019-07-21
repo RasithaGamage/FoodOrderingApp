@@ -8,11 +8,11 @@ public class RowItem {
     private String details;
     private String contactType;
 
-    public RowItem(int num, String member_name, String pic, String details,
+    public RowItem(int num, String pro_name, String pic, String details,
                    String contactType) {
 
         this.num = num;
-        this.Pro_name = member_name;
+        this.Pro_name = pro_name;
         this.pic = pic;
         this.details = details;
         this.contactType = contactType;
@@ -26,11 +26,11 @@ public class RowItem {
         this.num = num;
     }
 
-    public String getMember_name() {
+    public String getPro_name() {
         return Pro_name;
     }
 
-    public void setMember_name(String member_name) {
+    public void setPro_name(String member_name) {
         this.Pro_name = member_name;
     }
 

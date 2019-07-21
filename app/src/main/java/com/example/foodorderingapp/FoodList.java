@@ -84,6 +84,15 @@ public class FoodList extends AppCompatActivity {
             }
         });
 
+//        handler = new Handler(Looper.getMainLooper()) {
+//            @Override
+//            public void handleMessage(Message inputMessage) {
+//                bb = inputMessage.getData();
+//                String str = bb.getString("do");
+//
+//
+//            }
+//        };
 
     }
 

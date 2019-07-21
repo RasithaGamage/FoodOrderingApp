@@ -121,7 +121,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                         productList= g.fromJson(SetServerString, new TypeToken<List<Product>>(){}.getType());
                         //ArrayList <Product> productList = new ArrayList<>();
                         //Log.d("++++getPro_name+++++ :",productList.get(0).getPro_name());
-                        Toast.makeText(context,SetServerString,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context,SetServerString,Toast.LENGTH_SHORT).show();
 
                         rowItems = new ArrayList<RowItem>();
 
@@ -130,16 +130,24 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                             rowItems.add(item);
                         }
 
-                        CustomAdapter adapter = new CustomAdapter(context, rowItems);
+                        CustomAdapter adapter = new CustomAdapter(context.getApplicationContext(), rowItems);
                         mylistview.setAdapter(adapter);
+
                         mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position,long id)
                             {
-                                String member_name = rowItems.get(position).getMember_name();
-                                Toast.makeText(context, "" + member_name,Toast.LENGTH_SHORT).show();
+                                Log.d("++++onItemClick+++++ :","works");
+                        String pro_name = rowItems.get(position).getPro_name();
+                        Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
                             }
                         });
+
+//                        Message m = Message.obtain(); //get null message
+//                        Bundle b = new Bundle();
+//                        b.putString("do", "do");
+//                        m.setData(b);
+//                        handler.sendMessage(m);
                     }
                 });
             }  catch(Exception ex) {
