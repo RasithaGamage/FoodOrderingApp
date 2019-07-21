@@ -3,6 +3,9 @@ package com.example.foodorderingapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import org.apache.http.NameValuePair;
@@ -20,9 +23,11 @@ import java.util.List;
 public class BackgroundWorker extends AsyncTask<String,Void,Void> {
 
     Context context;
+    Handler handler;
 
-    BackgroundWorker (Context ctx){
+    BackgroundWorker (Context ctx,Handler handler){
         context = ctx;
+        this.handler = handler;
     }
 
     @Override
@@ -36,8 +41,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
         if (params[0].equals("login")){
             nameValuePairs.add(new BasicNameValuePair("emp_id", params[1]));
             nameValuePairs.add(new BasicNameValuePair("pw", params[2]));
-            httppost = new HttpPost("http://10.0.2.2:8080/ansell_cafeteria/auth.php");
-
+            //httppost = new HttpPost("http://10.0.2.2:8080/ansell_cafeteria/auth.php");
+            httppost = new HttpPost("http://imssa.lk/ansell_cafeteria/auth.php");
+           // httppost = new HttpPost("http://localhost:8080/ansell_cafeteria/auth.php");
             try {
 
                 String SetServerString ;
@@ -49,9 +55,19 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                 Log.d("+++++++++++++++++ :",SetServerString);
                 Log.d("+++++++++++++++++ :","::::Response end::::");
 
-                if(SetServerString.length()>0){
+                if(SetServerString.equals("Login Successful") ){
                     Intent newActivityLoad = new Intent(context,Home.class);
                     context.startActivity(newActivityLoad);
+                }
+                if(SetServerString.equals("No value found") )
+                {
+                    Message m = Message.obtain(); //get null message
+                    Bundle b = new Bundle();
+                    b.putString("invalid_credentials", "Invalid Credentials !");
+                    m.setData(b);
+                    //use the handler to send message
+                    handler.sendMessage(m);
+
                 }
 
             }  catch(Exception ex) {
@@ -59,7 +75,10 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
             }
         }
 
+        if (params[0].equals("get_meal_list")){
 
+
+        }
 
         return null;
     }

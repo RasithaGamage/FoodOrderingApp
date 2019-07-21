@@ -13,13 +13,6 @@
         tools:context="com.example.rasitha.RushWay.Home"
         android:background="#ffff">
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="150dp"
-            android:src="@drawable/bg2"
-            android:layout_marginTop="220dp"
-            android:layout_centerHorizontal="true"
-            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,6 +33,26 @@
                     android:id="@+id/imageView"
                     android:layout_marginTop="30pt"/>
 
+                <TextView
+                    android:text="Order your foods from Ansell Cafeteria!"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"
+                    android:textAlignment="center"
+                    android:layout_below="@id/imageView"
+                    android:layout_marginTop="5pt"
+                    android:textSize="7pt"/>
+
+
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/bg2"
+                    android:layout_marginTop="30dp"
+                    android:layout_below="@id/textView2"
+                    android:layout_centerHorizontal="true"
+                    />
+
 
                 <ImageButton
                     android:layout_width="20pt"
@@ -54,15 +67,6 @@
                     android:layout_alignParentRight="true"
                     android:visibility="gone"/>
 
-                <TextView
-                    android:text="Order your foods from Ansell Cafeteria!"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView2"
-                    android:textAlignment="center"
-                    android:layout_below="@id/imageView"
-                    android:layout_marginTop="5pt"
-                    android:textSize="7pt"/>
 
             </RelativeLayout>
 
@@ -73,7 +77,7 @@
                 android:inputType="text"
                 android:hint="Employee ID"
                 android:textAlignment="center"
-                android:layout_marginTop="100pt"
+                android:layout_marginTop="20pt"
                 android:fontFamily="@font/pt_sans_narrow_web_regular"
                 android:textSize="8pt"
 
@@ -120,19 +124,19 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account?"
+                android:text="Enter your employee ID and system password"
                 android:gravity="center"
                 android:layout_marginTop="10dp"
                 />
-            <Button
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:text="Sign in"
-                android:layout_gravity="center"
-                android:textColor="#2e7295"
-                android:id="@+id/btnSignIn"
-                android:background="@android:color/transparent"
-                />
+            <!--<Button-->
+                <!--android:layout_width="60dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:text="Sign in"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:textColor="#2e7295"-->
+                <!--android:id="@+id/btnSignIn"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--/>-->
 
 
             <!--<TextView-->
