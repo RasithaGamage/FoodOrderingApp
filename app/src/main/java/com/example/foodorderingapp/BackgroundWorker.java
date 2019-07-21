@@ -101,7 +101,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                 ResponseHandler<String> responseHandler = new BasicResponseHandler();
                 SetServerString = httpclient.execute(httppost, responseHandler);
 
-                Log.d("+++++++++++++++++ :",SetServerString);
+               // Log.d("+++++++++++++++++ :",SetServerString);
                 Log.d("+++++++++++++++++ :","::::Response end::::");
 
 //                Message m = Message.obtain(); //get null message
@@ -111,48 +111,41 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
 //                //use the handler to send message
 //                handler.sendMessage(m);
 
-
                 handler.post(new Runnable() {
 
                     @Override
                     public void run() {
-                        Toast.makeText(context,"what ever",Toast.LENGTH_SHORT).show();
 
+                        //Toast.makeText(context,"what ever",Toast.LENGTH_SHORT).show();
                         Gson g = new Gson();
                         productList= g.fromJson(SetServerString, new TypeToken<List<Product>>(){}.getType());
                         //ArrayList <Product> productList = new ArrayList<>();
-                        Log.d("++++getPro_name+++++ :",productList.get(0).getPro_name());
+                        //Log.d("++++getPro_name+++++ :",productList.get(0).getPro_name());
                         Toast.makeText(context,SetServerString,Toast.LENGTH_SHORT).show();
 
                         rowItems = new ArrayList<RowItem>();
 
                         for (int i = 0; i < productList.size(); i++) {
-                            RowItem item = new RowItem(i,productList.get(i).getPro_name(),1, productList.get(i).getDetails(), "");
+                            RowItem item = new RowItem(i,productList.get(i).getPro_name(),productList.get(i).getImg(), productList.get(i).getDetails(), "");
                             rowItems.add(item);
                         }
-
 
                         CustomAdapter adapter = new CustomAdapter(context, rowItems);
                         mylistview.setAdapter(adapter);
                         mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                                    long id) {
-
+                            public void onItemClick(AdapterView<?> parent, View view, int position,long id)
+                            {
                                 String member_name = rowItems.get(position).getMember_name();
-                                Toast.makeText(context, "" + member_name,
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "" + member_name,Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                 });
-
             }  catch(Exception ex) {
                 Log.d("+++++++++++++++++ :",ex.toString());
             }
-
         }
-
         return null;
     }
 

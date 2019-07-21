@@ -1,5 +1,7 @@
 package com.example.foodorderingapp;
 
+import java.sql.Blob;
+
 public class Product {
     private int pro_id;
     private String pro_name;
@@ -8,8 +10,9 @@ public class Product {
     private int qty;
     private double price;
     private String details;
+    private String img;
 
-    public Product(int pro_id, String pro_name, String cat, String brand, int qty, double price, String details) {
+    public Product(int pro_id, String pro_name, String cat, String brand, int qty, double price, String details,String img) {
         this.pro_id = pro_id;
         this.pro_name = pro_name;
         this.cat = cat;
@@ -17,6 +20,7 @@ public class Product {
         this.qty = qty;
         this.price = price;
         this.details = details;
+        this.img = img;
     }
 
     public int getPro_id() {
@@ -75,7 +79,8 @@ public class Product {
         this.details = details;
     }
 
+    public String getImg() {return img;}
 
-
+    public void setImg(String img) {this.img = img;}
 
 }

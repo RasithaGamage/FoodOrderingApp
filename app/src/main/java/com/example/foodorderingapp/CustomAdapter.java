@@ -3,6 +3,9 @@ package com.example.foodorderingapp;
 import java.util.List;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +71,9 @@ public class CustomAdapter extends BaseAdapter{
                 RowItem row_pos = rowItems.get(position);
 
                 holder.num.setText(Integer.toString(row_pos.getNum()));
-                holder.pic.setImageResource(R.drawable.bg1);
+                byte[]  ds =  Base64.decode(row_pos.getPic(), Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(ds, 0, ds.length);
+                holder.pic.setImageBitmap(decodedByte);
                 holder.pro_name.setText(row_pos.getMember_name());
                 holder.details.setText(row_pos.getDetails());
 
