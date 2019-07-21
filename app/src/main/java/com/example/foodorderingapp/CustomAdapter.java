@@ -43,10 +43,10 @@ public class CustomAdapter extends BaseAdapter{
 
 
         private class ViewHolder {
-            TextView place;
-            ImageView profile_pic;
-            TextView member_name;
-            TextView status;
+            TextView num;
+            ImageView pic;
+            TextView pro_name;
+            TextView details;
         }
 
         @Override
@@ -60,20 +60,17 @@ public class CustomAdapter extends BaseAdapter{
                 convertView = mInflater.inflate(R.layout.list_item, null);
                 holder = new ViewHolder();
 
-                holder.place = (TextView) convertView.findViewById(R.id.place);
-
-                holder.member_name = (TextView) convertView.findViewById(R.id.member_name);
-
-                holder.profile_pic = (ImageView) convertView.findViewById(R.id.profile_pic);
-
-                holder.status = (TextView) convertView.findViewById(R.id.status);
+                holder.num = (TextView) convertView.findViewById(R.id.num);
+                holder.pro_name = (TextView) convertView.findViewById(R.id.pro_name);
+                holder.pic = (ImageView) convertView.findViewById(R.id.pic);
+                holder.details = (TextView) convertView.findViewById(R.id.details);
 
                 RowItem row_pos = rowItems.get(position);
 
-                holder.place.setText(row_pos.getPlace());
-                holder.profile_pic.setImageResource(row_pos.getProfile_pic_id());
-                holder.member_name.setText(row_pos.getMember_name());
-                holder.status.setText(row_pos.getStatus());
+                holder.num.setText(Integer.toString(row_pos.getNum()));
+                holder.pic.setImageResource(R.drawable.bg1);
+                holder.pro_name.setText(row_pos.getMember_name());
+                holder.details.setText(row_pos.getDetails());
 
 
                 convertView.setTag(holder);

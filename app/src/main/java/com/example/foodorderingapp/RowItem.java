@@ -2,53 +2,49 @@ package com.example.foodorderingapp;
 
 public class RowItem {
 
-    private String place;
-    private String member_name;
-    private int profile_pic_id;
-    private String status;
+    private int num;
+    private String Pro_name;
+    private int pic_id;
+    private String details;
     private String contactType;
 
-    public RowItem(String place, String member_name, int profile_pic_id, String status,
+    public RowItem(int num, String member_name, int pic_id, String details,
                    String contactType) {
 
-        this.place = place;
-        this.member_name = member_name;
-        this.profile_pic_id = profile_pic_id;
-        this.status = status;
+        this.num = num;
+        this.Pro_name = member_name;
+        this.pic_id = pic_id;
+        this.details = details;
         this.contactType = contactType;
     }
 
-    public String getPlace() {
-        return place;
+    public int getNum() {
+        return num;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public String getMember_name() {
-        return member_name;
+        return Pro_name;
     }
 
     public void setMember_name(String member_name) {
-        this.member_name = member_name;
+        this.Pro_name = member_name;
     }
 
-    public int getProfile_pic_id() {
-        return profile_pic_id;
+    public int getPic_id() {return pic_id;}
+
+    public void setPic_id(int profile_pic_id) {
+        this.pic_id = profile_pic_id;
     }
 
-    public void setProfile_pic_id(int profile_pic_id) {
-        this.profile_pic_id = profile_pic_id;
+    public String getDetails() {
+        return details;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public void setDetails(String details) {this.details = details;}
 
     public String getContactType() {
         return contactType;

@@ -3,31 +3,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-
-    <string-array name="place">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-    </string-array>
-    <!-- Names -->
-    <string-array name="Member_names">
-        <item>CHICKEN RICE &amp; CURRY</item>
-        <item>FISH RICE &amp; CURRY</item>
-        <item>EGG RICE &amp; CURRY</item>
-        <item>VEGE RICE &amp; CURRY</item>
-        <item>EGG RICE &amp; CURRY</item>
-        <item>EGG RICE &amp; CURRY</item>
-        <item>EGG RICE &amp; CURRY</item>
-        <item>EGG RICE &amp; CURRY</item>
-        <item>EGG RICE &amp; CURRY</item>
-    </string-array>
-
     <!-- Pictures -->
     <array name="profile_pics">
         <item>@drawable/bg1</item>
@@ -41,29 +16,5 @@
         <item>@drawable/bg1</item>
     </array>
 
-    <!-- Status -->
-    <string-array name="statues">
-        <item>dhal curry,soya meat,pol sambal,papadam</item>
-        <item>dhal curry,soya meat,pol sambal</item>
-        <item>soya meat</item>
-        <item>soya meat</item>
-        <item>soya meat</item>
-        <item>soya meat</item>
-        <item>soya meat</item>
-        <item>soya meat</item>
-        <item>soya meat</item>
-    </string-array>
 
-    <!-- contact type -->
-    <string-array name="contactType">
-        <item>17 Points</item>
-        <item>15 Points</item>
-        <item>14 Points</item>
-        <item>13 Points</item>
-        <item>12 Points</item>
-        <item>11 Points</item>
-        <item>9 Points</item>
-        <item>9 Points</item>
-        <item>8 Points</item>
-    </string-array>
 </resources>

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this,str,Toast.LENGTH_SHORT).show();
                     }
                 };
-                BackgroundWorker bw = new BackgroundWorker(MainActivity.this,handler);
+                BackgroundWorker bw = new BackgroundWorker(MainActivity.this,handler,(ListView) findViewById(R.id.list) );
                 bw.execute("login",uidEditText.getText().toString(),pwdEditText.getText().toString());
 
             }
