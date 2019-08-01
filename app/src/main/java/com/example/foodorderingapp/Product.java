@@ -6,16 +6,18 @@ public class Product {
     private int pro_id;
     private String pro_name;
     private String cat;
+    private String sub_cat;
     private String brand;
     private int qty;
     private double price;
     private String details;
     private String img;
 
-    public Product(int pro_id, String pro_name, String cat, String brand, int qty, double price, String details,String img) {
+    public Product(int pro_id, String pro_name, String cat, String sub_cat, String brand, int qty, double price, String details,String img) {
         this.pro_id = pro_id;
         this.pro_name = pro_name;
         this.cat = cat;
+        this.sub_cat = sub_cat;
         this.brand = brand;
         this.qty = qty;
         this.price = price;
@@ -45,6 +47,14 @@ public class Product {
 
     public void setCat(String cat) {
         this.cat = cat;
+    }
+
+    public String getSub_cat() {
+        return sub_cat;
+    }
+
+    public void setSub_cat(String sub_cat) {
+        this.sub_cat = sub_cat;
     }
 
     public String getBrand() {

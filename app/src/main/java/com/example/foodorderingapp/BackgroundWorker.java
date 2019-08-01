@@ -3,9 +3,11 @@ package com.example.foodorderingapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -113,41 +115,96 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
 
                 handler.post(new Runnable() {
 
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void run() {
 
-                        //Toast.makeText(context,"what ever",Toast.LENGTH_SHORT).show();
-                        Gson g = new Gson();
-                        productList= g.fromJson(SetServerString, new TypeToken<List<Product>>(){}.getType());
-                        //ArrayList <Product> productList = new ArrayList<>();
-                        //Log.d("++++getPro_name+++++ :",productList.get(0).getPro_name());
-                        //Toast.makeText(context,SetServerString,Toast.LENGTH_SHORT).show();
+                        if(SetServerString.length()>0 && !SetServerString.equals("No value found")){
 
-                        rowItems = new ArrayList<RowItem>();
+                            //Toast.makeText(context,"what ever",Toast.LENGTH_SHORT).show();
+                            Gson g = new Gson();
+                            productList= g.fromJson(SetServerString, new TypeToken<List<Product>>(){}.getType());
+                            //ArrayList <Product> productList = new ArrayList<>();
+                            //Log.d("++++getPro_name+++++ :",productList.get(0).getPro_name());
+                            //Toast.makeText(context,SetServerString,Toast.LENGTH_SHORT).show();
 
-                        for (int i = 0; i < productList.size(); i++) {
-                            RowItem item = new RowItem(i,productList.get(i).getPro_name(),productList.get(i).getImg(), productList.get(i).getDetails(), "");
-                            rowItems.add(item);
-                        }
+                            rowItems = new ArrayList<RowItem>();
 
-                        CustomAdapter adapter = new CustomAdapter(context.getApplicationContext(), rowItems);
-                        mylistview.setAdapter(adapter);
-
-                        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position,long id)
-                            {
-                                Log.d("++++onItemClick+++++ :","works");
-                        String pro_name = rowItems.get(position).getPro_name();
-                        Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
+                            for (int i = 0; i < productList.size(); i++) {
+                                RowItem item = new RowItem(i,productList.get(i).getPro_name(),productList.get(i).getImg(), productList.get(i).getDetails(), "");
+                                rowItems.add(item);
                             }
-                        });
+
+                            CustomAdapter adapter = new CustomAdapter(context.getApplicationContext(), rowItems);
+                            mylistview.setAdapter(adapter);
+
+                            mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position,long id)
+                                {
+                                    Log.d("++++onItemClick+++++ :","works");
+                                    String pro_name = rowItems.get(position).getPro_name();
+                                    Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
 //                        Message m = Message.obtain(); //get null message
 //                        Bundle b = new Bundle();
 //                        b.putString("do", "do");
 //                        m.setData(b);
 //                        handler.sendMessage(m);
+                        }
+                    }
+                });
+            }  catch(Exception ex) {
+                Log.d("+++++++++++++++++ :",ex.toString());
+            }
+        }
+
+        if (params[0].equals("get_snack_list")){
+            HttpPost httppost ;
+            httppost = new HttpPost("http://imssa.lk/ansell_cafeteria/get_snacks.php");
+            try {
+
+                final String SetServerString ;
+                HttpClient httpclient = new DefaultHttpClient();
+                ResponseHandler<String> responseHandler = new BasicResponseHandler();
+                SetServerString = httpclient.execute(httppost, responseHandler);
+
+               // Log.d("+++++++++++++++++ :",SetServerString+"::::Response end::::");
+
+                handler.post(new Runnable() {
+
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @Override
+                    public void run() {
+
+                        if(SetServerString.length()>0 && !SetServerString.equals("No value found")){
+                            //Toast.makeText(context,"what ever",Toast.LENGTH_SHORT).show();
+                            Gson g = new Gson();
+                            productList= g.fromJson(SetServerString, new TypeToken<List<Product>>(){}.getType());
+
+                            rowItems = new ArrayList<RowItem>();
+
+                            for (int i = 0; i < productList.size(); i++) {
+                                RowItem item = new RowItem(i,productList.get(i).getPro_name(),productList.get(i).getImg(), productList.get(i).getDetails(), "");
+                                rowItems.add(item);
+                            }
+
+                            CustomAdapter adapter = new CustomAdapter(context.getApplicationContext(), rowItems);
+                            mylistview.setAdapter(adapter);
+
+                            mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position,long id)
+                                {
+                                    Log.d("++++onItemClick+++++ :","works");
+                                    String pro_name = rowItems.get(position).getPro_name();
+                                    Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
                     }
                 });
             }  catch(Exception ex) {

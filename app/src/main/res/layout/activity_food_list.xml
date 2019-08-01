@@ -7,12 +7,26 @@
     tools:context=".FoodList"
     android:id="@+id/activity_FoodList">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:dividerHeight="6dp" />
+        <EditText
+            android:id="@+id/searchBox"
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:layout_margin="30px"
+            android:layout_below="@+id/dropDown"
+            android:hint="Search" />
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_below="@+id/searchBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:dividerHeight="6dp" />
+    </RelativeLayout>
+
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"

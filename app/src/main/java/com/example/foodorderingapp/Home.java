@@ -48,17 +48,28 @@ public class Home extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch (id) {
-                    case R.id.account:
-                        Toast.makeText(Home.this, "My Account", Toast.LENGTH_SHORT).show();
-                        break;
                     case R.id.settings:
-                        Toast.makeText(Home.this, "Settings", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Home.this, "My Account", Toast.LENGTH_SHORT).show();
+                        Intent ac1 = new Intent(Home.this,Settings.class);
+                        startActivity(ac1);
                         break;
                     case R.id.mycart:
                         Toast.makeText(Home.this, "My Cart", Toast.LENGTH_SHORT).show();
+                        Intent ac2 = new Intent(Home.this,Cart.class);
+                        startActivity(ac2);
+                        break;
+                    case R.id.order:
+                        Toast.makeText(Home.this, "Orders", Toast.LENGTH_SHORT).show();
+                        Intent ac3 = new Intent(Home.this,Orders.class);
+                        startActivity(ac3);
+                        break;
+                    case R.id.history:
+                        Toast.makeText(Home.this, "History", Toast.LENGTH_SHORT).show();
+                        Intent ac4 = new Intent(Home.this,OrderHistory.class);
+                        startActivity(ac4);
                         break;
                     case R.id.logout: {
-                        Toast.makeText(Home.this, "Logged out", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Home.this, "Logout", Toast.LENGTH_SHORT).show();
                     }
                     default:
                         return true;
@@ -78,6 +89,16 @@ public class Home extends AppCompatActivity {
             }
         });
 
+
+        ImageButton snackButton =  (ImageButton) findViewById(R.id.snackButton);
+
+        snackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newActivityLoad = new Intent(Home.this,SnackList.class);
+                startActivity(newActivityLoad);
+            }
+        });
     }
 
     @Override

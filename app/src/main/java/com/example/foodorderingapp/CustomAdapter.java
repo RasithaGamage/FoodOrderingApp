@@ -1,6 +1,9 @@
 package com.example.foodorderingapp;
 
 import java.util.List;
+import java.util.Set;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,7 +11,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.annotation.RequiresApi;
+import android.util.ArraySet;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,10 +35,16 @@ public class CustomAdapter extends BaseAdapter{
 
     Context context;
     List<RowItem> rowItems;
+    LayoutInflater layoutInflater;
+    Set<View> viewSet;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     CustomAdapter(Context context, List<RowItem> rowItems) {
         this.context = context;
         this.rowItems = rowItems;
+
+         viewSet = new ArraySet<View>();
+
     }
 
     @Override
@@ -49,10 +61,8 @@ public class CustomAdapter extends BaseAdapter{
 
     @Override
     public long getItemId(int position) {
-
             return rowItems.indexOf(getItem(position));
     }
-
 
         private class ViewHolder {
             Button button;
@@ -62,17 +72,22 @@ public class CustomAdapter extends BaseAdapter{
             TextView details;
         }
 
+
+
+        @SuppressLint("ResourceType")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            ViewHolder holder = null;
 
-            LayoutInflater mInflater = (LayoutInflater) context
-                    .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            //LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+
             if (convertView == null) {
-                convertView = mInflater.inflate(R.layout.list_item, null);
-                holder = new ViewHolder();
+                layoutInflater = LayoutInflater.from(this.context);
+                convertView = layoutInflater.inflate(R.layout.list_item, null);
+            }
 
+                ViewHolder holder = null;
+                holder = new ViewHolder();
                 convertView.setClickable(true);
 //               final ViewHolder finalHolder = holder;
 //                convertView.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +96,6 @@ public class CustomAdapter extends BaseAdapter{
 //                       // Toast.makeText(context,""+ finalHolder.num.getText().toString(),Toast.LENGTH_SHORT).show();
 //                    }
 //                });
-
-
 
                 holder.num = (TextView) convertView.findViewById(R.id.num);
                 holder.pro_name = (TextView) convertView.findViewById(R.id.pro_name);
@@ -117,16 +130,11 @@ public class CustomAdapter extends BaseAdapter{
                 byte[]  ds =  Base64.decode(row_pos.getPic(), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(ds, 0, ds.length);
                 holder.pic.setImageBitmap(decodedByte);
+                //holder.pic.setImageResource(R.id.logo);
                 holder.pro_name.setText(row_pos.getPro_name());
                 holder.details.setText(row_pos.getDetails());
 
-
-
-
                 convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
 
             return convertView;
         }
