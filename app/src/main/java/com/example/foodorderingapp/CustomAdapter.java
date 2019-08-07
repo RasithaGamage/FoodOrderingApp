@@ -83,7 +83,8 @@ public class CustomAdapter extends BaseAdapter{
 
             if (convertView == null) {
                 layoutInflater = LayoutInflater.from(this.context);
-                convertView = layoutInflater.inflate(R.layout.list_item, null);
+                if(context.getClass().getSimpleName().toString().trim().equals("FoodList")){convertView = layoutInflater.inflate(R.layout.list_item, null);}
+                if(context.getClass().getSimpleName().toString().trim().equals("SnackList")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
             }
 
                 ViewHolder holder = null;

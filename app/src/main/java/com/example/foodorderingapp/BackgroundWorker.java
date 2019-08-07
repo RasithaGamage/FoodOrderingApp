@@ -135,7 +135,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                                 rowItems.add(item);
                             }
 
-                            CustomAdapter adapter = new CustomAdapter(context.getApplicationContext(), rowItems);
+                            CustomAdapter adapter = new CustomAdapter(context, rowItems);
                             mylistview.setAdapter(adapter);
 
                             mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -191,7 +191,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                                 rowItems.add(item);
                             }
 
-                            CustomAdapter adapter = new CustomAdapter(context.getApplicationContext(), rowItems);
+                            CustomAdapter adapter = new CustomAdapter(context, rowItems);
                             mylistview.setAdapter(adapter);
 
                             mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

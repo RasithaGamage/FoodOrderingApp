@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="2dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="10dp"
+        android:text="txt"
+        android:textSize="25sp"
+        android:textColor="#303030"/>
+
+    <RelativeLayout
+        android:layout_toRightOf="@+id/num"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rltv">
+
+        <ImageView
+            android:id="@+id/pic"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:contentDescription="desc"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+
+        <TextView
+            android:id="@+id/pro_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/pic"
+            android:paddingBottom="10dp"
+            android:text="txt"
+            android:textSize="20sp"
+            android:textColor="#303030"/>
+
+        <TextView
+            android:id="@+id/details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pro_name"
+            android:layout_below="@+id/pro_name"
+            android:text="txt"
+            android:textSize="16sp"
+            android:textColor="#303030" />
+
+       <android.support.v7.widget.LinearLayoutCompat
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_toRightOf="@+id/pic"
+           android:layout_below="@+id/details"
+           android:orientation="horizontal"
+           >
+
+           <Button
+               android:text="Order"
+               android:textColor="#ffffff"
+               android:backgroundTint="#009688"
+               android:id="@+id/btnOrder"
+               android:layout_marginTop="10pt"
+               android:layout_height="20pt"
+               android:layout_width="50pt"
+               />
+
+           <Button
+               android:id="@+id/plus_btn"
+               android:layout_width="60px"
+               android:layout_height="60px"
+               android:layout_marginTop="10pt"
+               android:layout_marginLeft="5pt"
+               android:backgroundTint="#353B74"
+               android:background="@drawable/ic_plus"/>
+
+           <TextView
+               android:id="@+id/count"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="00"
+               android:layout_marginTop="10pt"
+               android:textSize="16sp"
+               android:layout_marginRight="1pt"
+               android:layout_marginLeft="1pt"
+               android:textColor="#303030" />
+
+           <Button
+               android:id="@+id/minus_btn"
+               android:layout_width="60px"
+               android:layout_height="60px"
+               android:layout_marginTop="10pt"
+               android:backgroundTint="#353B74"
+               android:background="@drawable/ic_minus"/>
+
+       </android.support.v7.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
