@@ -114,7 +114,6 @@ public class SnackList extends AppCompatActivity {
         handler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message inputMessage) {
-
             }
         };
         mylistview = (ListView) findViewById(R.id.list);

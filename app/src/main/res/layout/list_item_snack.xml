@@ -12,6 +12,7 @@
         android:layout_marginTop="15dp"
         android:paddingBottom="10dp"
         android:text="txt"
+        android:visibility="invisible"
         android:textSize="25sp"
         android:textColor="#303030"/>
 
@@ -74,7 +75,7 @@
                android:layout_width="60px"
                android:layout_height="60px"
                android:layout_marginTop="10pt"
-               android:layout_marginLeft="5pt"
+               android:layout_marginLeft="7pt"
                android:backgroundTint="#353B74"
                android:background="@drawable/ic_plus"/>
 
@@ -82,11 +83,11 @@
                android:id="@+id/count"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="00"
+               android:text="0"
                android:layout_marginTop="10pt"
                android:textSize="16sp"
-               android:layout_marginRight="1pt"
-               android:layout_marginLeft="1pt"
+               android:layout_marginRight="3pt"
+               android:layout_marginLeft="3pt"
                android:textColor="#303030" />
 
            <Button

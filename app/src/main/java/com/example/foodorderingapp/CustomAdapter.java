@@ -38,13 +38,12 @@ public class CustomAdapter extends BaseAdapter{
     LayoutInflater layoutInflater;
     Set<View> viewSet;
 
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     CustomAdapter(Context context, List<RowItem> rowItems) {
         this.context = context;
         this.rowItems = rowItems;
-
          viewSet = new ArraySet<View>();
-
     }
 
     @Override
@@ -66,10 +65,14 @@ public class CustomAdapter extends BaseAdapter{
 
         private class ViewHolder {
             Button button;
+            Button button_plus;
+            Button button_minus;
             TextView num;
             ImageView pic;
             TextView pro_name;
             TextView details;
+            TextView count;
+            int itemCount;
         }
 
 
@@ -102,9 +105,15 @@ public class CustomAdapter extends BaseAdapter{
                 holder.pro_name = (TextView) convertView.findViewById(R.id.pro_name);
                 holder.pic = (ImageView) convertView.findViewById(R.id.pic);
                 holder.details = (TextView) convertView.findViewById(R.id.details);
+                holder.count = (TextView) convertView.findViewById(R.id.count);
                 holder.button = convertView.findViewById(R.id.btnOrder);
+                holder.button_plus = convertView.findViewById(R.id.plus_btn);
+                holder.button_minus = convertView.findViewById(R.id.minus_btn);
                 final ViewHolder finalHolder1 = holder;
                 holder.button.setTag(finalHolder1.num.getText());
+                holder.button_plus.setTag(finalHolder1.num.getText());
+                holder.button_minus.setTag(finalHolder1.num.getText());
+                holder.itemCount = 0;
                 holder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -122,6 +131,30 @@ public class CustomAdapter extends BaseAdapter{
                             finalHolder1.button.getBackground().setColorFilter(finalHolder1.button.getContext().getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
                             Toast.makeText(context,"Order canceled",Toast.LENGTH_SHORT).show();
                         }
+                    }
+                });
+
+            final ViewHolder finalHolder2 = holder;
+            final ViewHolder finalHolder3 = holder;
+            holder.button_plus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        finalHolder3.itemCount ++;
+                        Toast.makeText(context,Integer.toString(finalHolder3.itemCount),Toast.LENGTH_SHORT).show();
+                        finalHolder2.count.setText(Integer.toString(finalHolder3.itemCount));
+                    }
+                });
+
+            final ViewHolder finalHolder = holder;
+            final ViewHolder finalHolder4 = holder;
+            holder.button_minus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        finalHolder4.itemCount --;
+                        Toast.makeText(context,Integer.toString(finalHolder4.itemCount),Toast.LENGTH_SHORT).show();
+                        finalHolder.count.setText(Integer.toString(finalHolder4.itemCount));
                     }
                 });
 
