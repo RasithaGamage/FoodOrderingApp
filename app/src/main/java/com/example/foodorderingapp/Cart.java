@@ -45,15 +45,13 @@ public class Cart extends AppCompatActivity {
           ShoppingCart s = ShoppingCart.getInstance();
 //        itemCount.setText(Integer.toString(s.getShoppingCartArray().size()));
 
-
         mylistview = (ListView) findViewById(R.id.list);
         BackgroundWorker bw = new BackgroundWorker(Cart.this,handler,mylistview);
-
 
         rowItems = new ArrayList<RowItem>();
 
         for (int i = 0; i < s.getShoppingCartArray().size(); i++) {
-            RowItem item = new RowItem(i,s.getShoppingCartArray().get(i).getPro_name(),s.getShoppingCartArray().get(i).getImg(),s.getShoppingCartArray().get(i).getDetails(), "");
+            RowItem item = new RowItem(s.getShoppingCartArray().get(i).getPro_id(),s.getShoppingCartArray().get(i).getPro_name(),s.getShoppingCartArray().get(i).getImg(),s.getShoppingCartArray().get(i).getDetails(), "",s.getShoppingCartArray().get(i).getBuying_amount());
             rowItems.add(item);
         }
 

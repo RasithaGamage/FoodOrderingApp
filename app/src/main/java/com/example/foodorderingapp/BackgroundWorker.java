@@ -131,7 +131,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                             rowItems = new ArrayList<RowItem>();
 
                             for (int i = 0; i < productList.size(); i++) {
-                                RowItem item = new RowItem(i,productList.get(i).getPro_name(),productList.get(i).getImg(), productList.get(i).getDetails(), "");
+                                RowItem item = new RowItem(productList.get(i).getPro_id(),productList.get(i).getPro_name(),productList.get(i).getImg(), productList.get(i).getDetails(),"" ,0);
                                 rowItems.add(item);
                             }
 
@@ -187,7 +187,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                             rowItems = new ArrayList<RowItem>();
 
                             for (int i = 0; i < productList.size(); i++) {
-                                RowItem item = new RowItem(i,productList.get(i).getPro_name(),productList.get(i).getImg(), productList.get(i).getDetails(), "");
+                                RowItem item = new RowItem(productList.get(i).getPro_id(),productList.get(i).getPro_name(),productList.get(i).getImg(), productList.get(i).getDetails(), "",0);
                                 rowItems.add(item);
                             }
 

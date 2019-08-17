@@ -92,7 +92,6 @@ public class CustomAdapter extends BaseAdapter{
                 if(context.getClass().getSimpleName().toString().trim().equals("FoodList")){convertView = layoutInflater.inflate(R.layout.list_item, null);}
                 if(context.getClass().getSimpleName().toString().trim().equals("SnackList")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
                 if(context.getClass().getSimpleName().toString().trim().equals("Cart")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
-
             }
 
                 ViewHolder holder = null;
@@ -121,7 +120,6 @@ public class CustomAdapter extends BaseAdapter{
                 holder.itemCount = 0;
                 final ViewHolder finalHolder5 = holder;
                 final ViewHolder finalHolder6 = holder;
-
 
                 if(!context.getClass().getSimpleName().toString().trim().equals("FoodList")){
                     holder.button_plus.setTag(finalHolder1.num.getText());
@@ -194,6 +192,11 @@ public class CustomAdapter extends BaseAdapter{
                 holder.pro_name.setText(row_pos.getPro_name());
                 holder.details.setText(row_pos.getDetails());
                 convertView.setTag(holder);
+
+            if(context.getClass().getSimpleName().toString().trim().equals("Cart")){
+                holder.count.setText(Integer.toString(row_pos.getAmount()));
+            }
+
 
             return convertView;
         }

@@ -7,15 +7,17 @@ public class RowItem {
     private String pic;
     private String details;
     private String contactType;
+    private int amount;
 
     public RowItem(int num, String pro_name, String pic, String details,
-                   String contactType) {
+                   String contactType, int amount) {
 
         this.num = num;
         this.Pro_name = pro_name;
         this.pic = pic;
         this.details = details;
         this.contactType = contactType;
+        this.amount = amount;
     }
 
     public int getNum() {
@@ -52,6 +54,14 @@ public class RowItem {
 
     public void setContactType(String contactType) {
         this.contactType = contactType;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
 }
