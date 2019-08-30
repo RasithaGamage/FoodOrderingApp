@@ -31,12 +31,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:dividerHeight="6dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="100px"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/list"
+            android:id="@+id/textview1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50px"
+                android:text="Total (Rs):"
+                android:id="@+id/txt1"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/total_amount"
+                android:text="0000.00"
+                android:textSize="50px"
+                android:layout_toEndOf="@+id/txt1"
+                android:layout_marginLeft="70px"
+                />
+        </RelativeLayout>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/list"
+            android:layout_below="@+id/textview1"
             android:text="CHECK OUT"
             android:textColor="#fff"
+            android:id="@+id/checkoutBtn"
             android:backgroundTint="#009688"/>
 
     </RelativeLayout>

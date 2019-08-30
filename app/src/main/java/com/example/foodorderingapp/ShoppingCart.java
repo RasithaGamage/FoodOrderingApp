@@ -68,7 +68,6 @@ class  ShoppingCart {
             single_instance = new ShoppingCart();
             shoppingCartArray = new ArrayList<CartItem>();
         }
-
         return single_instance;
     }
 

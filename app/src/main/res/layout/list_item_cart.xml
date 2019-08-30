@@ -38,40 +38,19 @@
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/pic"
             android:paddingBottom="10dp"
-            android:text="Title"
+            android:text="txt"
             android:textSize="20sp"
             android:textColor="#303030"/>
-        <TextView
-            android:id="@+id/txt2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/pro_name"
-            android:layout_below="@+id/pro_name"
-            android:text="Rs."
-            android:textSize="16sp"
-            android:textColor="#303030"/>
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/pro_name"
-            android:layout_alignEnd="@+id/txt2"
-            android:layout_marginEnd="-41dp"
-            android:text="20.0"
-            android:textColor="#303030"
-            android:textSize="16sp" />
-
 
         <TextView
             android:id="@+id/details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/pro_name"
-            android:layout_below="@+id/txt2"
-            android:text="Details"
+            android:layout_below="@+id/pro_name"
+            android:text="txt"
             android:textSize="16sp"
-            android:textColor="#303030"/>
+            android:textColor="#303030" />
 
        <android.support.v7.widget.LinearLayoutCompat
            android:layout_width="wrap_content"
@@ -81,15 +60,15 @@
            android:orientation="horizontal"
            >
 
-           <Button
-               android:text="Order"
-               android:textColor="#ffffff"
-               android:backgroundTint="#009688"
-               android:id="@+id/btnOrder"
-               android:layout_marginTop="10pt"
-               android:layout_height="20pt"
-               android:layout_width="50pt"
-               />
+           <!--<Button-->
+               <!--android:text="Order"-->
+               <!--android:textColor="#ffffff"-->
+               <!--android:backgroundTint="#009688"-->
+               <!--android:id="@+id/btnOrder"-->
+               <!--android:layout_marginTop="10pt"-->
+               <!--android:layout_height="20pt"-->
+               <!--android:layout_width="50pt"-->
+               <!--/>-->
 
            <Button
                android:id="@+id/plus_btn"

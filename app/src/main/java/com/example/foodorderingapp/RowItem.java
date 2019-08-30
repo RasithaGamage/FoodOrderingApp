@@ -6,8 +6,11 @@ public class RowItem {
     private String Pro_name;
     private String pic;
     private String details;
+    private double price;
     private String contactType;
     private int amount;
+
+
 
     public RowItem(int num, String pro_name, String pic, String details,
                    String contactType, int amount) {
@@ -18,6 +21,7 @@ public class RowItem {
         this.details = details;
         this.contactType = contactType;
         this.amount = amount;
+//        this.price=price;
     }
 
     public int getNum() {
@@ -62,6 +66,14 @@ public class RowItem {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
 }

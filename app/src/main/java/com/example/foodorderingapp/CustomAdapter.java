@@ -1,6 +1,7 @@
 package com.example.foodorderingapp;
 
 import java.io.ByteArrayOutputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +42,7 @@ public class CustomAdapter extends BaseAdapter{
     LayoutInflater layoutInflater;
     Set<View> viewSet;
     List <CartItem> shoppingCartArray;
+    TextView tv;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     CustomAdapter(Context context, List<RowItem> rowItems) {
@@ -74,6 +76,7 @@ public class CustomAdapter extends BaseAdapter{
             ImageView pic;
             TextView pro_name;
             TextView details;
+            TextView price;
             TextView count;
             int itemCount;
         }
@@ -111,8 +114,22 @@ public class CustomAdapter extends BaseAdapter{
                 holder.pro_name = (TextView) convertView.findViewById(R.id.pro_name);
                 holder.pic = (ImageView) convertView.findViewById(R.id.pic);
                 holder.details = (TextView) convertView.findViewById(R.id.details);
+                holder.price = (TextView) convertView.findViewById(R.id.price);
+
+                if(context.getClass().getSimpleName().toString().trim().equals("FoodList")) {
+                    holder.price.setVisibility(View.GONE);
+                }
+
                 holder.count = (TextView) convertView.findViewById(R.id.count);
                 holder.button = convertView.findViewById(R.id.btnOrder);
+
+                if(context.getClass().getSimpleName().toString().trim().equals("Cart")) {
+                    holder.button.setVisibility(View.GONE);
+
+                    //calculating total in the cart
+                    tv = (TextView) convertView.findViewById(R.id.total_amount);
+                }
+
                 holder.button_plus = convertView.findViewById(R.id.plus_btn);
                 holder.button_minus = convertView.findViewById(R.id.minus_btn);
                 final ViewHolder finalHolder1 = holder;
@@ -126,6 +143,7 @@ public class CustomAdapter extends BaseAdapter{
                     holder.button_minus.setTag(finalHolder1.num.getText());
                     final ViewHolder finalHolder2 = holder;
                     final ViewHolder finalHolder3 = holder;
+                    final View finalConvertView = convertView;
                     holder.button_plus.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -133,6 +151,11 @@ public class CustomAdapter extends BaseAdapter{
                             finalHolder3.itemCount ++;
 //                        Toast.makeText(context,Integer.toString(finalHolder3.itemCount),Toast.LENGTH_SHORT).show();
                             finalHolder2.count.setText(Integer.toString(finalHolder3.itemCount));
+
+                            if(context.getClass().getSimpleName().toString().trim().equals("Cart")) {
+                                calcPrice(finalHolder2,"add");
+                            }
+
                         }
                     });
 
@@ -145,8 +168,14 @@ public class CustomAdapter extends BaseAdapter{
                             finalHolder4.itemCount --;
 //                        Toast.makeText(context,Integer.toString(finalHolder4.itemCount),Toast.LENGTH_SHORT).show();
                             finalHolder.count.setText(Integer.toString(finalHolder4.itemCount));
+
+                            if(context.getClass().getSimpleName().toString().trim().equals("Cart")) {
+                                calcPrice(finalHolder2,"deduct");
+                            }
                         }
                     });
+
+
                 }
                 holder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -163,7 +192,7 @@ public class CustomAdapter extends BaseAdapter{
                             //int pro_id, String pro_name, String cat, String sub_cat, String brand, int qty, double price, String details, String img,int buying_amount
 
                            String img_string = drawableToBase64(finalHolder5.pic);
-                            CartItem c_item = new CartItem(Integer.parseInt(finalHolder5.num.getText().toString()),finalHolder5.pro_name.getText().toString(),"","","",0,0,finalHolder5.details.getText().toString(),img_string,Integer.parseInt(finalHolder5.count.getText().toString()));
+                            CartItem c_item = new CartItem(Integer.parseInt(finalHolder5.num.getText().toString()),finalHolder5.pro_name.getText().toString(),"","","",0,Double.parseDouble(finalHolder5.price.getText().toString()),finalHolder5.details.getText().toString(),img_string,Integer.parseInt(finalHolder5.count.getText().toString()));
                             shoppingCartArray.add(c_item);
 //                            for(CartItem i:shoppingCartArray
 //                            ) {
@@ -191,6 +220,11 @@ public class CustomAdapter extends BaseAdapter{
                 //holder.pic.setImageResource(R.id.logo);
                 holder.pro_name.setText(row_pos.getPro_name());
                 holder.details.setText(row_pos.getDetails());
+
+                DecimalFormat df = new DecimalFormat("#.00");
+                String formattedValue = df.format(row_pos.getPrice());
+
+                holder.price.setText(formattedValue);
                 convertView.setTag(holder);
 
             if(context.getClass().getSimpleName().toString().trim().equals("Cart")){
@@ -216,5 +250,29 @@ public String drawableToBase64(ImageView d){
 
     return ba1;
 }
+
+    public void calcPrice(ViewHolder vh, String operation){
+        double c = Double.parseDouble(vh.count.getText().toString());
+        double p= Double.parseDouble(vh.price.getText().toString());
+
+        tv = (TextView) ((Activity)context).findViewById(R.id.total_amount);
+
+        double currentTotal = Double.parseDouble(tv.getText().toString());
+        double total = currentTotal;
+
+        if(operation=="add"){
+            total= currentTotal+p;
+        }
+        if(operation=="deduct"){
+            total = currentTotal-p;
+        }
+
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedValue = df.format(total);
+
+        tv.setText(formattedValue);
+        //return formattedValue;
+    }
 
 }

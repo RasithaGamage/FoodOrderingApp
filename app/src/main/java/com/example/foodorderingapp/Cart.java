@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,7 @@ public class Cart extends AppCompatActivity {
 
         for (int i = 0; i < s.getShoppingCartArray().size(); i++) {
             RowItem item = new RowItem(s.getShoppingCartArray().get(i).getPro_id(),s.getShoppingCartArray().get(i).getPro_name(),s.getShoppingCartArray().get(i).getImg(),s.getShoppingCartArray().get(i).getDetails(), "",s.getShoppingCartArray().get(i).getBuying_amount());
+            item.setPrice(s.getShoppingCartArray().get(i).getPrice());
             rowItems.add(item);
         }
 
@@ -112,7 +114,17 @@ public class Cart extends AppCompatActivity {
             }
         });
 
+        final TextView total_amount = (TextView)  findViewById(R.id.total_amount);
 
+        Button checkoutbtn =(Button) findViewById(R.id.checkoutBtn);
+        checkoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newActivityLoad = new Intent(Cart.this,CheckingOut.class);
+                newActivityLoad.putExtra("total_amount",total_amount.getText().toString());
+                Cart.this.startActivity(newActivityLoad);
+            }
+        });
 
     }
 }
