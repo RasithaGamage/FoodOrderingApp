@@ -11,34 +11,29 @@
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"-->
     <!--android:id="@+id/itemCount" />-->
-
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!--<EditText-->
-            <!--android:id="@+id/searchBox"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="150px"-->
-            <!--android:layout_margin="30px"-->
-            <!--android:layout_below="@+id/dropDown"-->
-            <!--android:hint="Search" />-->
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ListView
             android:id="@+id/list"
             android:layout_below="@+id/searchBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:dividerHeight="6dp" />
-
+            android:layout_height="match_parent"
+            android:dividerHeight="6dp"
+            android:layout_weight="500"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="100px"
+            android:layout_marginLeft="100px"
+            android:layout_marginRight="100px"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/list"
-            android:id="@+id/textview1">
+            android:id="@+id/textview1"
+            android:layout_weight="1"
+            android:layout_marginTop="30px"
+            android:layout_marginBottom="30px">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,7 +41,6 @@
                 android:text="Total (Rs):"
                 android:id="@+id/txt1"
                 />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,19 +50,25 @@
                 android:layout_toEndOf="@+id/txt1"
                 android:layout_marginLeft="70px"
                 />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt1"
+                android:text="CHECK OUT"
+                android:textColor="#fff"
+                android:id="@+id/checkoutBtn"
+                android:backgroundTint="#009688"/>
         </RelativeLayout>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textview1"
-            android:text="CHECK OUT"
-            android:textColor="#fff"
-            android:id="@+id/checkoutBtn"
-            android:backgroundTint="#009688"/>
+    </LinearLayout>
 
-    </RelativeLayout>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="No items in the cart"
+        android:textSize="50px"
+        android:gravity="center"
+        android:id="@+id/txt3"/>
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
@@ -77,8 +77,5 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         android:id="@+id/nv">
-
     </android.support.design.widget.NavigationView>
-
-
 </android.support.v4.widget.DrawerLayout>

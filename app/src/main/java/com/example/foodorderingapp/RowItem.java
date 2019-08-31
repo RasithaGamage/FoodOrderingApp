@@ -21,7 +21,7 @@ public class RowItem {
         this.details = details;
         this.contactType = contactType;
         this.amount = amount;
-//        this.price=price;
+
     }
 
     public int getNum() {

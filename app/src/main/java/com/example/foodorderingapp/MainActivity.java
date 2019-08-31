@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     //Button btnSignIn;
@@ -64,11 +67,37 @@ public class MainActivity extends AppCompatActivity {
                 Intent newActivityLoad = new Intent(MainActivity.this,Home.class);
                 MainActivity.this.startActivity(newActivityLoad);
 
+                UserData ud = UserData.getInstance();
+                ud.setUserID("123");
+
             }
         });
+    }
+}
 
+class UserData {
 
+    private static String userID;
+    private static UserData single_instance = null;
 
+    private UserData() {
+    }
+
+    public static UserData getInstance()
+    {
+        if (single_instance == null)
+        {
+            single_instance = new UserData();
+        }
+        return single_instance;
+    }
+
+    public static String getUserID() {
+        return userID;
+    }
+
+    public static void setUserID(String userID) {
+        UserData.userID = userID;
     }
 
 }

@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/pro_name"
             android:layout_alignEnd="@+id/txt2"
-            android:layout_marginEnd="-41dp"
+            android:layout_marginEnd="-100dp"
             android:text="20.0"
             android:textColor="#303030"
             android:textSize="16sp" />

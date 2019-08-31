@@ -1,4 +1,5 @@
 package com.example.foodorderingapp;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,20 +44,49 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-//        itemCount = (TextView) findViewById(R.id.itemCount);
+        handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message inputMessage) {
+
+            }
+        };
+
+//        itemsCount = (TextView) findViewById(R.id.itemCount);
           ShoppingCart s = ShoppingCart.getInstance();
 //        itemCount.setText(Integer.toString(s.getShoppingCartArray().size()));
+
+        Button checkoutbtn =(Button) findViewById(R.id.checkoutBtn);
+        TextView tv = (TextView) findViewById(R.id.total_amount);
+        TextView tv2=(TextView) findViewById(R.id.txt1);
+        TextView tv3=(TextView) findViewById(R.id.txt3);
+        tv3.setVisibility(View.GONE);
+
+        if(s.getShoppingCartArray().size()<=0){
+            checkoutbtn.setVisibility(View.GONE);
+            tv.setVisibility(View.GONE);
+            tv2.setVisibility(View.GONE);
+            tv3.setVisibility(View.VISIBLE);
+        }
 
         mylistview = (ListView) findViewById(R.id.list);
         BackgroundWorker bw = new BackgroundWorker(Cart.this,handler,mylistview);
 
         rowItems = new ArrayList<RowItem>();
 
+        double total_price = 0;
+
         for (int i = 0; i < s.getShoppingCartArray().size(); i++) {
             RowItem item = new RowItem(s.getShoppingCartArray().get(i).getPro_id(),s.getShoppingCartArray().get(i).getPro_name(),s.getShoppingCartArray().get(i).getImg(),s.getShoppingCartArray().get(i).getDetails(), "",s.getShoppingCartArray().get(i).getBuying_amount());
             item.setPrice(s.getShoppingCartArray().get(i).getPrice());
             rowItems.add(item);
+
+            total_price = total_price+ (s.getShoppingCartArray().get(i).getPrice() * (double) s.getShoppingCartArray().get(i).getBuying_amount());
         }
+
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedValue = df.format(total_price);
+        tv.setText(formattedValue);
 
         CustomAdapter adapter = new CustomAdapter(this, rowItems);
         mylistview.setAdapter(adapter);
@@ -116,7 +147,6 @@ public class Cart extends AppCompatActivity {
 
         final TextView total_amount = (TextView)  findViewById(R.id.total_amount);
 
-        Button checkoutbtn =(Button) findViewById(R.id.checkoutBtn);
         checkoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +156,15 @@ public class Cart extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(t.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
     }
 }
 
