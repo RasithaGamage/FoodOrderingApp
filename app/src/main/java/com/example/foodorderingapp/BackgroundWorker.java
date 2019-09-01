@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -309,6 +310,18 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                             });
 
                         }
+                        else {
+
+                            handler.post(new Runnable() {  //You should use Handler.post() whenever you want to do operations in the UI thread.
+
+                                @RequiresApi(api = Build.VERSION_CODES.M)
+                                @Override
+                                public void run() {
+                                    TextView tv3=(TextView) ((Activity)context).findViewById(R.id.txt3);
+                                    tv3.setVisibility(View.VISIBLE);
+                                }
+                            });
+                        }
                     }
                 });
             }  catch(Exception ex) {
@@ -340,6 +353,36 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                         Intent in = new Intent(context,context.getClass());
                         finishAffinity((Activity) context);
                         context.startActivity(in);
+                    }
+                });
+
+            }catch (Exception ex) {
+                Log.d("+++++++++++++++++ :",ex.toString());
+            }
+
+
+        }
+
+        if (params[0].equals("check_time")){
+            HttpPost httppost ;
+            httppost = new HttpPost("http://imssa.lk/ansell_cafeteria/check_time.php");
+            try {
+
+                final String SetServerString ;
+                HttpClient httpclient = new DefaultHttpClient();
+                ResponseHandler<String> responseHandler = new BasicResponseHandler();
+                SetServerString = httpclient.execute(httppost, responseHandler);
+
+
+                Gson g = new Gson();
+                String a = g.fromJson(SetServerString, new TypeToken<List<String>>(){}.getType());
+
+                handler.post(new Runnable() {  //You should use Handler.post() whenever you want to do operations in the UI thread.
+
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @Override
+                    public void run() {
+                        Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
                     }
                 });
 

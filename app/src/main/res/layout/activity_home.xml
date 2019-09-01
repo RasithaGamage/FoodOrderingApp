@@ -21,7 +21,26 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="30dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cannot place meal orders from"
+                    android:textSize="50px"
+                    android:gravity="center"
+                    android:id="@+id/txt8"
+                    android:textColor="@android:color/holo_blue_light"
+                    />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txt9"
+                    android:text="10.00AM-12.00PM"
+                    android:textSize="100px"
+                    android:gravity="center"
+                    android:layout_below="@+id/txt8"
+                    android:textColor="@android:color/holo_blue_light"
+                    />
                 <android.support.v7.widget.AppCompatImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -36,6 +55,28 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cannot place meal orders from"
+                    android:textSize="50px"
+                    android:gravity="center"
+                    android:id="@+id/txt10"
+                    android:textColor="@android:color/holo_blue_light"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txt11"
+                    android:text="10.00AM-12.00PM"
+                    android:textSize="100px"
+                    android:gravity="center"
+                    android:layout_below="@+id/txt10"
+                    android:textColor="@android:color/holo_blue_light"
+                    />
+
 
                 <android.support.v7.widget.AppCompatImageButton
                     android:layout_width="match_parent"

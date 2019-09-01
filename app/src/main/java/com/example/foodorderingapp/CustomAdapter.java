@@ -2,13 +2,16 @@ package com.example.foodorderingapp;
 
 import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -135,6 +138,7 @@ public class CustomAdapter extends BaseAdapter{
             if(context.getClass().getSimpleName().toString().trim().equals("Orders")){
                 holder.button_plus.setVisibility(View.GONE);
                 holder.button_minus.setVisibility(View.GONE);
+                holder.num.setVisibility(View.GONE);
 
                 holder.button.setText("Cancel");
                 holder.button.getBackground().setColorFilter(holder.button.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
@@ -214,6 +218,7 @@ public class CustomAdapter extends BaseAdapter{
                 }
 
             final View finalConvertView1 = convertView;
+            final View finalConvertView2 = convertView;
             holder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -257,19 +262,42 @@ public class CustomAdapter extends BaseAdapter{
                                 CartItem c_item;
                                 if(context.getClass().getSimpleName().toString().trim().equals("FoodList")){
 
-                                    c_item = new CartItem(Integer.parseInt(finalHolder5.num.getText().toString()),finalHolder5.pro_name.getText().toString(),"","","",0,Double.parseDouble(finalHolder5.price.getText().toString()),finalHolder5.details.getText().toString(),img_string,1);
+                                    c_item = new CartItem(Integer.parseInt(finalHolder5.num.getText().toString()),finalHolder5.pro_name.getText().toString(),"","","",0,Double.parseDouble(finalHolder5.price.getText().toString()),finalHolder5.details.getText().toString(),img_string,1);ShoppingCart s = ShoppingCart.getInstance();
+                                    s.getShoppingCartArray().add(c_item);
+
+                                    //add orders by sending this to the db
+                                    handler = new Handler(Looper.getMainLooper()) {
+                                        @Override
+                                        public void handleMessage(Message inputMessage) {
+
+                                        }
+                                    };
+
+                                    //YYYY-MM-DD hh:mm:ss
+                                    String pattern = "yyyy-MM-dd HH:mm:ss";
+                                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+                                    String date_time = simpleDateFormat.format(new Date());
+
+                                    UserData ud = UserData.getInstance();
+                                    mylistview = finalConvertView2.findViewById(R.id.list);
+                                    BackgroundWorker bw = new BackgroundWorker(context,handler,mylistview);
+                                    bw.execute("place_order",ud.getUserID(),date_time,"salary");
+                                    //params[0] place_order
+                                    //params[1] emp_id
+                                    //params[2} date_time
+                                    //params[3} salary or cash
+
+                                    Intent newActivityLoad = new Intent(context,Orders.class);
+                                    context.startActivity(newActivityLoad);
+                                    Toast.makeText(context,"Amount will be deducted from your salary",Toast.LENGTH_LONG).show();
+
                                 }
                                 else {
                                     c_item = new CartItem(Integer.parseInt(finalHolder5.num.getText().toString()),finalHolder5.pro_name.getText().toString(),"","","",0,Double.parseDouble(finalHolder5.price.getText().toString()),finalHolder5.details.getText().toString(),img_string,Integer.parseInt(finalHolder5.count.getText().toString()));
-                                }
-                                shoppingCartArray.add(c_item);
-//                            for(CartItem i:shoppingCartArray
-//                            ) {
-//                                System.out.println(i.getItemId()+"<------------------------------getItemId");
-//                                System.out.println(i.getItemAmount()+"<------------------------------getItemAmount");
-//                            }
-                                ShoppingCart s = ShoppingCart.getInstance();
-                                s.setShoppingCartArray(shoppingCartArray);
+                                    ShoppingCart s = ShoppingCart.getInstance();
+                                    s.getShoppingCartArray().add(c_item);
+                               }
+
 
                                 if(context.getClass().getSimpleName().toString().trim().equals("FoodList")){
                                     //disable all other elements

@@ -15,6 +15,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:dividerHeight="6dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No items in the cart"
+            android:textSize="50px"
+            android:gravity="center"
+            android:id="@+id/txt3"/>
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView

@@ -3,6 +3,9 @@ package com.example.foodorderingapp;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -108,5 +111,18 @@ public class Home extends AppCompatActivity {
             return true;
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void checkTime(){
+        ListView mylistview = (ListView) findViewById(R.id.list);
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message inputMessage) {
+
+            }
+        };
+
+        BackgroundWorker bw = new BackgroundWorker(this,handler,mylistview);
+        bw.execute("check_time");
     }
 }
