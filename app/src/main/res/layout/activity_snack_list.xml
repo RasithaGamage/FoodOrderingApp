@@ -11,12 +11,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="150px"
-        android:id="@+id/dropDown"
-        android:entries="@array/array_name"
-    />
+    <!--<Spinner-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="150px"-->
+        <!--android:id="@+id/dropDown"-->
+        <!--android:entries="@array/array_name"-->
+    <!--/>-->
 
 
     <EditText

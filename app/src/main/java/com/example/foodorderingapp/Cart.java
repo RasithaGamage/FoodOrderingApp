@@ -47,7 +47,6 @@ public class Cart extends AppCompatActivity {
         handler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message inputMessage) {
-
             }
         };
 
@@ -82,7 +81,6 @@ public class Cart extends AppCompatActivity {
 
             total_price = total_price+ (s.getShoppingCartArray().get(i).getPrice() * (double) s.getShoppingCartArray().get(i).getBuying_amount());
         }
-
 
         DecimalFormat df = new DecimalFormat("#.00");
         String formattedValue = df.format(total_price);

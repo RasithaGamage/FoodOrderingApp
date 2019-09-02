@@ -106,9 +106,7 @@ public class FoodList extends AppCompatActivity {
 //
 //            }
 //        };
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -118,7 +116,5 @@ public class FoodList extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 }

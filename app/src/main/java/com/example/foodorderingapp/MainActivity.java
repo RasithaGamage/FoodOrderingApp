@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void handleMessage(Message inputMessage) {
                         bb = inputMessage.getData();
-                        String str = bb.getString("invalid_credentials");
-                        Toast.makeText(MainActivity.this,str,Toast.LENGTH_SHORT).show();
+                        String str = bb.getString("access_denied");
+                        Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
                     }
                 };
                 BackgroundWorker bw = new BackgroundWorker(MainActivity.this,handler,(ListView) findViewById(R.id.list) );

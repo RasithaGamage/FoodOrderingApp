@@ -88,7 +88,21 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                 Log.d("+++++++++++++++++ :",SetServerString);
                 Log.d("+++++++++++++++++ :","::::Response end::::");
 
-                if(SetServerString.equals("Login Successful") ){
+                if(SetServerString.equals("0") ){
+                    UserData ud = UserData.getInstance();
+                    ud.setUserID(params[1]);
+
+//                    Intent newActivityLoad = new Intent(context,Home.class);
+//                    context.startActivity(newActivityLoad);
+
+                    Message m = Message.obtain(); //get null message
+                    Bundle b = new Bundle();
+                    b.putString("access_denied", "Mark attendance before use the system!");
+                    m.setData(b);
+                    //use the handler to send message
+                    handler.sendMessage(m);
+                }
+                else if(SetServerString.equals("1") ){
                     UserData ud = UserData.getInstance();
                     ud.setUserID(params[1]);
 
@@ -100,7 +114,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                 {
                     Message m = Message.obtain(); //get null message
                     Bundle b = new Bundle();
-                    b.putString("invalid_credentials", "Invalid Credentials !");
+                    b.putString("access_denied", "Invalid Credentials !");
                     m.setData(b);
                     //use the handler to send message
                     handler.sendMessage(m);
@@ -411,15 +425,13 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
             }catch (Exception ex) {
                 Log.d("+++++++++++++++++ :",ex.toString());
             }
-
-
         }
 
         if (params[0].equals("check_time")){
-            HttpPost httppost ;
+
+            HttpPost httppost;
             httppost = new HttpPost("http://imssa.lk/ansell_cafeteria/check_time.php");
             try {
-
                 final String SetServerString ;
                 HttpClient httpclient = new DefaultHttpClient();
                 ResponseHandler<String> responseHandler = new BasicResponseHandler();
@@ -436,7 +448,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void run() {
-//                      Toast.makeText(context,a.get(1).toString(),Toast.LENGTH_SHORT).show();
+//                         Toast.makeText(context,a.get(1).toString(),Toast.LENGTH_SHORT).show();
 
                         String pattern = "HH:mm";
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -461,9 +473,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                             Date timenow = simpleDateFormat.parse(date_time);
 
                             //check whether it is the snack time
-                            if(!timenow.after(snack_list_start_time) && timenow.before(snack_list_end_time))
+                            if(!(timenow.after(snack_list_start_time) && timenow.before(snack_list_end_time)))
                             {
-                                Toast.makeText(context,"it is not the  snack time",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context,"it is not the snack time",Toast.LENGTH_SHORT).show();
                                 TextView t1 = (TextView) ((Activity)context).findViewById(R.id.txt8);
                                 TextView t2 = (TextView) ((Activity)context).findViewById(R.id.txt9);
                                 t2.bringToFront();
@@ -474,8 +486,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                                 snack_btn.setEnabled(false);
                             }
 
-                             //check whether it is the meal time
-                            if(timenow.after(food_list_start_time) && timenow.before(food_list_end_time))
+                            //check whether it is the meal time
+                            if(!(timenow.after(food_list_start_time) && timenow.before(food_list_end_time)))
                             {
                                 Toast.makeText(context,"it is not the meal time",Toast.LENGTH_SHORT).show();
                                 TextView t4 = (TextView)  ((Activity)context).findViewById(R.id.txt10);
@@ -483,12 +495,12 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                                 t4.bringToFront();
                                 t5.bringToFront();
                                 ImageButton meal_btn = (ImageButton)  ((Activity)context).findViewById(R.id.mealButton);
-//                              meal_btn.setVisibility(View.GONE);
+//                                meal_btn.setVisibility(View.GONE);
                                 meal_btn.setImageAlpha(50);
                                 meal_btn.setEnabled(false);
                             }
                         } catch (Exception ex) {
-                            Log.d("++++++++Exception+++++++++ :",ex.toString());
+                            Log.d("++++++Exception+++++ :",ex.toString());
                         }
                     }
                 });
@@ -496,7 +508,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
             }catch (Exception ex) {
                 Log.d("+++++++++++++++++ :",ex.toString());
             }
-
      }
         return null;
     }

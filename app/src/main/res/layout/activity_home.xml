@@ -24,7 +24,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cannot place snack orders"
+                    android:text="Cannot place snack orders at this time"
                     android:textSize="50px"
                     android:gravity="center"
                     android:id="@+id/txt8"
@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cannot place meal orders"
+                    android:text="Cannot place meal orders at this time"
                     android:textSize="50px"
                     android:gravity="center"
                     android:id="@+id/txt10"
