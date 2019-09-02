@@ -24,22 +24,22 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cannot place meal orders from"
+                    android:text="Cannot place snack orders"
                     android:textSize="50px"
                     android:gravity="center"
                     android:id="@+id/txt8"
-                    android:textColor="@android:color/holo_blue_light"
+                    android:textColor="#353535"
                     />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/txt9"
-                    android:text="10.00AM-12.00PM"
+                    android:text=""
                     android:textSize="100px"
                     android:gravity="center"
                     android:layout_below="@+id/txt8"
-                    android:textColor="@android:color/holo_blue_light"
+                    android:textColor="#353535"
                     />
                 <android.support.v7.widget.AppCompatImageButton
                     android:layout_width="wrap_content"
@@ -59,22 +59,22 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cannot place meal orders from"
+                    android:text="Cannot place meal orders"
                     android:textSize="50px"
                     android:gravity="center"
                     android:id="@+id/txt10"
-                    android:textColor="@android:color/holo_blue_light"
+                    android:textColor="#353535"
                     />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/txt11"
-                    android:text="10.00AM-12.00PM"
+                    android:text=""
                     android:textSize="100px"
                     android:gravity="center"
                     android:layout_below="@+id/txt10"
-                    android:textColor="@android:color/holo_blue_light"
+                    android:textColor="#353535"
                     />
 
 
