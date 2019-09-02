@@ -89,6 +89,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                 Log.d("+++++++++++++++++ :","::::Response end::::");
 
                 if(SetServerString.equals("Login Successful") ){
+                    UserData ud = UserData.getInstance();
+                    ud.setUserID(params[1]);
+
                     Intent newActivityLoad = new Intent(context,Home.class);
                     context.startActivity(newActivityLoad);
                 }
@@ -164,6 +167,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                                 }
                             });
 
+                            LinearLayout preloader = ((Activity)context).findViewById(R.id.preloader);
+                            preloader.setVisibility(View.GONE);
+
 //                        Message m = Message.obtain(); //get null message
 //                        Bundle b = new Bundle();
 //                        b.putString("do", "do");
@@ -220,6 +226,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                                     Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
                                 }
                             });
+
+                            LinearLayout preloader = ((Activity)context).findViewById(R.id.preloader);
+                            preloader.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -336,9 +345,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
 
                             LinearLayout preloader = ((Activity)context).findViewById(R.id.preloader);
                             preloader.setVisibility(View.GONE);
-
-
-
 
                         }
                         else {

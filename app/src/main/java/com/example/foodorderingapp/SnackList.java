@@ -85,6 +85,7 @@ public class SnackList extends AppCompatActivity {
                         break;
                     case R.id.logout: {
                         Toast.makeText(SnackList.this, "Logout", Toast.LENGTH_SHORT).show();
+                        finishAffinity();
                     }
                     default:
                         return true;

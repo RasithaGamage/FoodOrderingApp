@@ -61,14 +61,11 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this,str,Toast.LENGTH_SHORT).show();
                     }
                 };
-//                BackgroundWorker bw = new BackgroundWorker(MainActivity.this,handler,(ListView) findViewById(R.id.list) );
-//                bw.execute("login",uidEditText.getText().toString(),pwdEditText.getText().toString());
+                BackgroundWorker bw = new BackgroundWorker(MainActivity.this,handler,(ListView) findViewById(R.id.list) );
+                bw.execute("login",uidEditText.getText().toString(),pwdEditText.getText().toString());
 
-                Intent newActivityLoad = new Intent(MainActivity.this,Home.class);
-                MainActivity.this.startActivity(newActivityLoad);
-
-                UserData ud = UserData.getInstance();
-                ud.setUserID("123");
+//                Intent newActivityLoad = new Intent(MainActivity.this,Home.class);
+//                MainActivity.this.startActivity(newActivityLoad);
 
             }
         });

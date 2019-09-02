@@ -77,6 +77,7 @@ public class OrderHistory extends AppCompatActivity {
                         break;
                     case R.id.logout: {
                         Toast.makeText(OrderHistory.this, "Logout", Toast.LENGTH_SHORT).show();
+                        finishAffinity();
                     }
                     default:
                         return true;

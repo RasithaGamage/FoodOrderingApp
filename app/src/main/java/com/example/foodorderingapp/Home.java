@@ -76,6 +76,7 @@ public class Home extends AppCompatActivity {
                         break;
                     case R.id.logout: {
                         Toast.makeText(Home.this, "Logout", Toast.LENGTH_SHORT).show();
+                        finishAffinity();
                     }
                     default:
                         return true;

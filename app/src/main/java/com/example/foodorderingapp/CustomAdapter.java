@@ -196,12 +196,14 @@ public class CustomAdapter extends BaseAdapter{
                     holder.button_minus.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
+                            if(finalHolder4.itemCount>0){
                             if( finalHolder4.itemCount == 0){
                                 finalHolder4.itemCount = Integer.parseInt(finalHolder2.count.getText().toString());
                             }
 
-                            finalHolder4.itemCount --;
+
+                                finalHolder4.itemCount --;
+
 //                            Toast.makeText(context,Integer.toString(finalHolder4.itemCount),Toast.LENGTH_SHORT).show();
                             finalHolder.count.setText(Integer.toString(finalHolder4.itemCount));
 
@@ -220,6 +222,7 @@ public class CustomAdapter extends BaseAdapter{
                                 calcPrice(finalHolder2,"deduct");
                             }
                         }
+                    }
                     });
                 }
 

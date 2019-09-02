@@ -91,6 +91,7 @@ public class Orders extends AppCompatActivity {
                         break;
                     case R.id.logout: {
                         Toast.makeText(Orders.this, "Logout", Toast.LENGTH_SHORT).show();
+                        finishAffinity();
                     }
                     default:
                         return true;
