@@ -382,7 +382,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void run() {
-                        Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
                     }
                 });
 
