@@ -52,7 +52,7 @@ public class Orders extends AppCompatActivity {
         mylistview = (ListView) findViewById(R.id.list);
         BackgroundWorker bw = new BackgroundWorker(Orders.this,handler,mylistview);
         UserData ud = UserData.getInstance();
-        bw.execute("get_orders_list",ud.getUserID());
+        bw.execute("get_orders_list",ud.getUserID(),"get_orders");
 
 
         dl = (DrawerLayout) findViewById(R.id.activity_Orders);

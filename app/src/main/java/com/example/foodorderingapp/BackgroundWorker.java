@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -279,7 +280,15 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
             HttpPost httppost ;
             httppost = new HttpPost("http://imssa.lk/ansell_cafeteria/get_orders.php");
             nameValuePairs.add(new BasicNameValuePair("emp_id", params[1]));
-            nameValuePairs.add(new BasicNameValuePair("method", "get_orders"));
+
+            if(params[2].equals("get_history")){
+                nameValuePairs.add(new BasicNameValuePair("method", "get_history"));
+
+            }
+            else
+            {
+                nameValuePairs.add(new BasicNameValuePair("method", "get_orders"));
+            }
 
             try {
                 final String SetServerString ;
@@ -324,6 +333,13 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                             });
                             TextView tv3=(TextView) ((Activity)context).findViewById(R.id.txt3);
                             tv3.setVisibility(View.GONE);
+
+                            LinearLayout preloader = ((Activity)context).findViewById(R.id.preloader);
+                            preloader.setVisibility(View.GONE);
+
+
+
+
                         }
                         else {
                             handler.post(new Runnable() {  //You should use Handler.post() whenever you want to do operations in the UI thread.
@@ -333,6 +349,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                                 public void run() {
                                     TextView tv3=(TextView) ((Activity)context).findViewById(R.id.txt3);
                                     tv3.setVisibility(View.VISIBLE);
+                                    LinearLayout preloader = ((Activity)context).findViewById(R.id.preloader);
+                                    preloader.setVisibility(View.GONE);
                                 }
                             });
                         }
@@ -342,14 +360,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                 Log.d("+++++++++++++++++ :",ex.toString());
             }
 
-//            if(params[2]){
-//
-//            }
         }
-        if(params[0].equals("get_history")){
-            nameValuePairs.add(new BasicNameValuePair("method", "get_history"));
 
-        }
 
         if (params[0].equals("remove_order")){
             HttpPost httppost ;
@@ -386,7 +398,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                         mylistview = (ListView) ((Activity)context).findViewById(R.id.list);
                         BackgroundWorker bw = new BackgroundWorker(context,handler,mylistview);
                         UserData ud = UserData.getInstance();
-                        bw.execute("get_orders_list",ud.getUserID());
+                        bw.execute("get_orders_list",ud.getUserID(),"get_orders");
                     }
                 });
 

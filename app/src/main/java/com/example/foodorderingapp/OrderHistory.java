@@ -39,7 +39,7 @@ public class OrderHistory extends AppCompatActivity {
         mylistview = (ListView) findViewById(R.id.list);
         BackgroundWorker bw = new BackgroundWorker(OrderHistory.this,handler,mylistview);
         UserData ud = UserData.getInstance();
-        bw.execute("get_orders_list",ud.getUserID());
+        bw.execute("get_orders_list",ud.getUserID(),"get_history");
 
         dl = (DrawerLayout) findViewById(R.id.activity_OrderHistory);
         t = new ActionBarDrawerToggle(this, dl, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
