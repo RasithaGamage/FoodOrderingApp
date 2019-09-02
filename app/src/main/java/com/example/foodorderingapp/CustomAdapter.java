@@ -39,8 +39,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.data.model.Resource;
-
 /**
  * Created by Rasitha on 3/24/2018.
  */

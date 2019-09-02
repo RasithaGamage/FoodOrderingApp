@@ -332,16 +332,13 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
 
                             Gson g = new Gson();
                             productList= g.fromJson(SetServerString, new TypeToken<List<Product>>(){}.getType());
-
                             rowItems = new ArrayList<RowItem>();
-
                             for (int i = 0; i < productList.size(); i++) {
                                 RowItem item = new RowItem(productList.get(i).getPro_id(),productList.get(i).getPro_name(),productList.get(i).getImg(), productList.get(i).getDetails(),productList.get(i).getBrand() ,0);
                                 item.setPrice(productList.get(i).getPrice());
                                 item.setAmount(productList.get(i).getQty());
                                 rowItems.add(item);
                             }
-
                             CustomAdapter adapter = new CustomAdapter(context, rowItems);
                             mylistview.setAdapter(adapter);
 
@@ -359,7 +356,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
 
                             LinearLayout preloader = ((Activity)context).findViewById(R.id.preloader);
                             preloader.setVisibility(View.GONE);
-
                         }
                         else {
                             handler.post(new Runnable() {  //You should use Handler.post() whenever you want to do operations in the UI thread.
@@ -379,9 +375,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
             }  catch(Exception ex) {
                 Log.d("+++++++++++++++++ :",ex.toString());
             }
-
         }
-
 
         if (params[0].equals("remove_order")){
             HttpPost httppost ;
@@ -437,7 +431,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                 ResponseHandler<String> responseHandler = new BasicResponseHandler();
                 SetServerString = httpclient.execute(httppost, responseHandler);
 
-
                 Gson g = new Gson();
                 final ArrayList a = g.fromJson(SetServerString, new TypeToken<List<String>>(){}.getType());
 
@@ -448,7 +441,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void run() {
-//                         Toast.makeText(context,a.get(1).toString(),Toast.LENGTH_SHORT).show();
+
+//                      Toast.makeText(context,a.get(1).toString(),Toast.LENGTH_SHORT).show();
 
                         String pattern = "HH:mm";
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -502,6 +496,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                         } catch (Exception ex) {
                             Log.d("++++++Exception+++++ :",ex.toString());
                         }
+
                     }
                 });
 
