@@ -63,6 +63,7 @@ public class CheckingOut extends AppCompatActivity {
                         break;
                     case R.id.logout: {
                         Toast.makeText(CheckingOut.this, "Logout", Toast.LENGTH_SHORT).show();
+                        finishAffinity();
                     }
                     default:
                         return true;

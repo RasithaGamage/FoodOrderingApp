@@ -137,6 +137,7 @@ public class Cart extends AppCompatActivity {
                         break;
                     case R.id.logout: {
                         Toast.makeText(Cart.this, "Logout", Toast.LENGTH_SHORT).show();
+                        finishAffinity();
                     }
                     default:
                         return true;
