@@ -58,7 +58,7 @@ public class FoodList extends AppCompatActivity {
         t.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Ansell Cafeteria");
+        getSupportActionBar().setTitle("Meal List");
         nv = (NavigationView) findViewById(R.id.nv);
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -67,8 +67,8 @@ public class FoodList extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.settings:
-                        Toast.makeText(FoodList.this, "My Account", Toast.LENGTH_SHORT).show();
-                        Intent ac1 = new Intent(FoodList.this,Settings.class);
+                        Toast.makeText(FoodList.this, "Home", Toast.LENGTH_SHORT).show();
+                        Intent ac1 = new Intent(FoodList.this,Home.class);
                         startActivity(ac1);
                         break;
                     case R.id.mycart:

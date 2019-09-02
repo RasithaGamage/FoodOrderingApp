@@ -1,17 +1,24 @@
 package com.example.foodorderingapp;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,10 +35,16 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static android.support.v4.app.ActivityCompat.finishAffinity;
+import static android.support.v4.app.ActivityCompat.shouldShowRequestPermissionRationale;
 
 public class BackgroundWorker extends AsyncTask<String,Void,Void> {
 
@@ -266,6 +279,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
             HttpPost httppost ;
             httppost = new HttpPost("http://imssa.lk/ansell_cafeteria/get_orders.php");
             nameValuePairs.add(new BasicNameValuePair("emp_id", params[1]));
+            nameValuePairs.add(new BasicNameValuePair("method", "get_orders"));
 
             try {
                 final String SetServerString ;
@@ -308,10 +322,10 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                                     Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
                                 }
                             });
-
+                            TextView tv3=(TextView) ((Activity)context).findViewById(R.id.txt3);
+                            tv3.setVisibility(View.GONE);
                         }
                         else {
-
                             handler.post(new Runnable() {  //You should use Handler.post() whenever you want to do operations in the UI thread.
 
                                 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -327,6 +341,14 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
             }  catch(Exception ex) {
                 Log.d("+++++++++++++++++ :",ex.toString());
             }
+
+//            if(params[2]){
+//
+//            }
+        }
+        if(params[0].equals("get_history")){
+            nameValuePairs.add(new BasicNameValuePair("method", "get_history"));
+
         }
 
         if (params[0].equals("remove_order")){
@@ -350,9 +372,21 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                     @Override
                     public void run() {
 
-                        Intent in = new Intent(context,context.getClass());
-                        finishAffinity((Activity) context);
-                        context.startActivity(in);
+//                        Intent in = new Intent(context,context.getClass());
+//                        finishAffinity((Activity) context);
+//                        context.startActivity(in);
+
+                        handler = new Handler(Looper.getMainLooper()) {
+                            @Override
+                            public void handleMessage(Message inputMessage) {
+
+                            }
+                        };
+
+                        mylistview = (ListView) ((Activity)context).findViewById(R.id.list);
+                        BackgroundWorker bw = new BackgroundWorker(context,handler,mylistview);
+                        UserData ud = UserData.getInstance();
+                        bw.execute("get_orders_list",ud.getUserID());
                     }
                 });
 
@@ -375,14 +409,72 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
 
 
                 Gson g = new Gson();
-                String a = g.fromJson(SetServerString, new TypeToken<List<String>>(){}.getType());
+                final ArrayList a = g.fromJson(SetServerString, new TypeToken<List<String>>(){}.getType());
 
                 handler.post(new Runnable() {  //You should use Handler.post() whenever you want to do operations in the UI thread.
 
+                    @SuppressLint({"ResourceAsColor", "Range"})
+                    @TargetApi(Build.VERSION_CODES.O)
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void run() {
-                        //Toast.makeText(context, "" + pro_name,Toast.LENGTH_SHORT).show();
+
+
+//                      Toast.makeText(context,a.get(1).toString(),Toast.LENGTH_SHORT).show();
+
+                        String pattern = "HH:mm";
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+                        String f_start_time =a.get(0).toString();
+                        String f_end_time = a.get(1).toString();
+                        String s_start_time = a.get(2).toString();
+                        String s_end_time =a.get(3).toString();
+
+                        Date food_list_start_time;
+                        Date food_list_end_time;
+                        Date snack_list_start_time;
+                        Date snack_list_end_time ;
+
+                        try {
+                             food_list_start_time = simpleDateFormat.parse(f_start_time);
+                             food_list_end_time = simpleDateFormat.parse(f_end_time);
+                             snack_list_start_time = simpleDateFormat.parse(s_start_time);
+                             snack_list_end_time = simpleDateFormat.parse(s_end_time);
+
+                            String date_time = simpleDateFormat.format(new Date());
+                            Date timenow = simpleDateFormat.parse(date_time);
+
+                            //check whether it is the snack time
+                            if(!timenow.after(snack_list_start_time) && timenow.before(snack_list_end_time))
+                            {
+                                Toast.makeText(context,"it is not the  snack time",Toast.LENGTH_SHORT).show();
+                                TextView t1 = (TextView) ((Activity)context).findViewById(R.id.txt8);
+                                TextView t2 = (TextView) ((Activity)context).findViewById(R.id.txt9);
+                                t2.bringToFront();
+                                t1.bringToFront();
+                                ImageButton snack_btn = (ImageButton) ((Activity)context).findViewById(R.id.snackButton);
+//                                snack_btn.setVisibility(View.GONE);
+                                snack_btn.setImageAlpha(50);
+                                snack_btn.setEnabled(false);
+                            }
+
+                             //check whether it is the meal time
+                            if(timenow.after(food_list_start_time) && timenow.before(food_list_end_time))
+                            {
+                                Toast.makeText(context,"it is not the meal time",Toast.LENGTH_SHORT).show();
+                                TextView t4 = (TextView)  ((Activity)context).findViewById(R.id.txt10);
+                                TextView t5 = (TextView)  ((Activity)context).findViewById(R.id.txt11);
+                                t4.bringToFront();
+                                t5.bringToFront();
+                                ImageButton meal_btn = (ImageButton)  ((Activity)context).findViewById(R.id.mealButton);
+//                              meal_btn.setVisibility(View.GONE);
+                                meal_btn.setImageAlpha(50);
+                                meal_btn.setEnabled(false);
+                            }
+                        } catch (Exception ex) {
+                            Log.d("++++++++Exception+++++++++ :",ex.toString());
+                        }
+
                     }
                 });
 
@@ -390,9 +482,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,Void> {
                 Log.d("+++++++++++++++++ :",ex.toString());
             }
 
-
-        }
-
+     }
         return null;
     }
 

@@ -20,9 +20,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="No items in the cart"
+            android:text="No current orders"
             android:textSize="50px"
             android:gravity="center"
+            android:visibility="gone"
             android:id="@+id/txt3"/>
     </RelativeLayout>
 

@@ -100,6 +100,8 @@ public class CustomAdapter extends BaseAdapter{
                 if(context.getClass().getSimpleName().toString().trim().equals("SnackList")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
                 if(context.getClass().getSimpleName().toString().trim().equals("Cart")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
                 if(context.getClass().getSimpleName().toString().trim().equals("Orders")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
+                if(context.getClass().getSimpleName().toString().trim().equals("OrderHistory")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
+
             }
 
                 ViewHolder holder = null;
@@ -133,7 +135,7 @@ public class CustomAdapter extends BaseAdapter{
             holder.button_plus = convertView.findViewById(R.id.plus_btn);
             holder.button_minus = convertView.findViewById(R.id.minus_btn);
 
-            if(context.getClass().getSimpleName().toString().trim().equals("Orders")){
+            if(context.getClass().getSimpleName().toString().trim().equals("Orders") || context.getClass().getSimpleName().toString().trim().equals("OrderHistory")){
                 holder.button_plus.setVisibility(View.GONE);
                 holder.button_minus.setVisibility(View.GONE);
                 holder.num.setVisibility(View.GONE);
@@ -142,6 +144,10 @@ public class CustomAdapter extends BaseAdapter{
                 holder.button.getBackground().setColorFilter(holder.button.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
 
                 //and turn order button into cancel button
+            }
+
+            if(context.getClass().getSimpleName().toString().trim().equals("OrderHistory")){
+                holder.button.setVisibility(View.GONE);
             }
                 final ViewHolder finalHolder1 = holder;
                 holder.button.setTag(finalHolder1.num.getText());
@@ -227,7 +233,7 @@ public class CustomAdapter extends BaseAdapter{
                         Handler handler;
                         List<RowItem> rowItems;
 
-                        if(context.getClass().getSimpleName().toString().trim().equals("Orders")){
+                        if(context.getClass().getSimpleName().toString().trim().equals("Orders") || context.getClass().getSimpleName().toString().trim().equals("OrderHistory" )){
 
                             handler = new Handler(Looper.getMainLooper()) {
                                 @Override
@@ -377,7 +383,7 @@ public class CustomAdapter extends BaseAdapter{
                 holder.pro_name.setText(row_pos.getPro_name());
                 holder.details.setText(row_pos.getDetails());
 
-                if(context.getClass().getSimpleName().toString().trim().equals("Orders")){
+                if(context.getClass().getSimpleName().toString().trim().equals("Orders")||context.getClass().getSimpleName().toString().trim().equals("OrderHistory")){
                     DecimalFormat df = new DecimalFormat("#.00");
                     String formattedValue = df.format(row_pos.getPrice());
                     holder.price.setText(formattedValue+"X"+ row_pos.getAmount());

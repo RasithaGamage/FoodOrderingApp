@@ -18,9 +18,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +27,18 @@ public class Home extends AppCompatActivity {
     private NavigationView nv;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
-
-
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+         handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message inputMessage) {
+            }
+        };
 
         dl = (DrawerLayout) findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, dl, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -52,8 +55,8 @@ public class Home extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.settings:
-                        Toast.makeText(Home.this, "My Account", Toast.LENGTH_SHORT).show();
-                        Intent ac1 = new Intent(Home.this,Settings.class);
+                        Toast.makeText(Home.this, "Home", Toast.LENGTH_SHORT).show();
+                        Intent ac1 = new Intent(Home.this,Home.class);
                         startActivity(ac1);
                         break;
                     case R.id.mycart:
@@ -102,6 +105,8 @@ public class Home extends AppCompatActivity {
                 startActivity(newActivityLoad);
             }
         });
+
+        checkTime();
     }
 
     @Override
@@ -115,13 +120,6 @@ public class Home extends AppCompatActivity {
 
     private void checkTime(){
         ListView mylistview = (ListView) findViewById(R.id.list);
-        Handler handler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message inputMessage) {
-
-            }
-        };
-
         BackgroundWorker bw = new BackgroundWorker(this,handler,mylistview);
         bw.execute("check_time");
     }
