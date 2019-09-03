@@ -40,7 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by Rasitha on 3/24/2018.
+ * Created by on 3/24/2018.
  */
 public class CustomAdapter extends BaseAdapter{
 
