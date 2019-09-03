@@ -32,6 +32,11 @@ public class CheckingOut extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checking_out);
 
+        dl = (DrawerLayout) findViewById(R.id.activity_checking_out);
+        t = new ActionBarDrawerToggle(this, dl, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        dl.addDrawerListener(t);
+        t.syncState();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Payment");
         nv = (NavigationView) findViewById(R.id.nv);
@@ -151,13 +156,13 @@ public class CheckingOut extends AppCompatActivity {
             }
         });
     }
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        if(t.onOptionsItemSelected(item))
-//            return true;
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(t.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
+    }
 }
 
