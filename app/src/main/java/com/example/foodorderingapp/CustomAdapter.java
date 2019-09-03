@@ -90,10 +90,8 @@ public class CustomAdapter extends BaseAdapter{
 
         @SuppressLint("ResourceType")
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
+        public View getView(final int position, View convertView, ViewGroup parent) {
             //LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-
             if (convertView == null) {
                 layoutInflater = LayoutInflater.from(this.context);
                 if(context.getClass().getSimpleName().toString().trim().equals("FoodList")){convertView = layoutInflater.inflate(R.layout.list_item, null);}
@@ -101,9 +99,7 @@ public class CustomAdapter extends BaseAdapter{
                 if(context.getClass().getSimpleName().toString().trim().equals("Cart")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
                 if(context.getClass().getSimpleName().toString().trim().equals("Orders")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
                 if(context.getClass().getSimpleName().toString().trim().equals("OrderHistory")){convertView = layoutInflater.inflate(R.layout.list_item_snack, null);}
-
             }
-
                 ViewHolder holder = null;
                 holder = new ViewHolder();
                 convertView.setClickable(true);
@@ -139,10 +135,8 @@ public class CustomAdapter extends BaseAdapter{
                 holder.button_plus.setVisibility(View.GONE);
                 holder.button_minus.setVisibility(View.GONE);
                 holder.num.setVisibility(View.GONE);
-
                 holder.button.setText("Cancel");
                 holder.button.getBackground().setColorFilter(holder.button.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
-
                 //and turn order button into cancel button
             }
 
@@ -155,7 +149,7 @@ public class CustomAdapter extends BaseAdapter{
                 final ViewHolder finalHolder5 = holder;
                 final ViewHolder finalHolder6 = holder;
 
-                if(! context.getClass().getSimpleName().toString().trim().equals("FoodList")) {
+                if(!context.getClass().getSimpleName().toString().trim().equals("FoodList")) {
 
                     holder.button_plus.setTag(finalHolder1.num.getText());
                     holder.button_minus.setTag(finalHolder1.num.getText());
@@ -166,26 +160,35 @@ public class CustomAdapter extends BaseAdapter{
                         @Override
                         public void onClick(View v) {
 
-                            if( finalHolder2.itemCount == 0){
+                            if(finalHolder2.itemCount == 0){
                                 finalHolder2.itemCount = Integer.parseInt(finalHolder2.count.getText().toString());
                             }
-                            finalHolder2.itemCount ++;
-//                          Toast.makeText(context,Integer.toString(finalHolder3.itemCount),Toast.LENGTH_SHORT).show();
-                            finalHolder2.count.setText(Integer.toString(finalHolder2.itemCount));
+//                            Toast.makeText(context,"getAmount "+rowItems.get(position).getAmount(),Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(context,"count "+finalHolder2.count.getText().toString(),Toast.LENGTH_SHORT).show();
+                            if( ! (rowItems.get(position).getAmount()== Integer.parseInt(finalHolder2.count.getText().toString()))){
 
-                            int product_id = Integer.parseInt(finalHolder2.num.getText().toString());
-                            //search this id in shoppingcart array
-                            //and updated its count
-                            ShoppingCart s = ShoppingCart.getInstance();
-                            for (CartItem item: s.getShoppingCartArray())
-                            {
-                                if(item.getPro_id()== product_id){
-                                    item.setBuying_amount(finalHolder2.itemCount);
+                                    finalHolder2.itemCount ++;
+
+    //                          Toast.makeText(context,Integer.toString(finalHolder3.itemCount),Toast.LENGTH_SHORT).show();
+                                    finalHolder2.count.setText(Integer.toString(finalHolder2.itemCount));
+
+                                    int product_id = Integer.parseInt(finalHolder2.num.getText().toString());
+                                    //search this id in shoppingcart array
+                                    //and updated its count
+                                    ShoppingCart s = ShoppingCart.getInstance();
+                                    for (CartItem item: s.getShoppingCartArray())
+                                    {
+                                        if(item.getPro_id()== product_id){
+                                            item.setBuying_amount(finalHolder2.itemCount);
+                                        }
+                                    }
+                                    if(context.getClass().getSimpleName().toString().trim().equals("Cart")) {
+                                        calcPrice(finalHolder2,"add");
                                 }
                             }
-                            if(context.getClass().getSimpleName().toString().trim().equals("Cart")) {
-                                calcPrice(finalHolder2,"add");
-                        }
+                            else {
+                                Toast.makeText(context,"Out of stock",Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
 

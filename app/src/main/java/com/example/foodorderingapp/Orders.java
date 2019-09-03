@@ -54,7 +54,6 @@ public class Orders extends AppCompatActivity {
         UserData ud = UserData.getInstance();
         bw.execute("get_orders_list",ud.getUserID(),"get_orders");
 
-
         dl = (DrawerLayout) findViewById(R.id.activity_Orders);
         t = new ActionBarDrawerToggle(this, dl, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         dl.addDrawerListener(t);
